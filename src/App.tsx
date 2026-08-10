@@ -50,8 +50,13 @@ export default function App() {
   return (
     <div className="relative">
       <div className="grain" aria-hidden />
+      {/* WCAG 2.4.1: a barra fixa põe cinco links na frente do conteúdo em
+          toda visita. Quem navega por teclado precisa de uma saída. */}
+      <a href="#conteudo" className="pular">
+        Pular para o conteúdo
+      </a>
       <Nav />
-      <main>
+      <main id="conteudo">
         <Hero />
         <OQueE />
         <Pilares />

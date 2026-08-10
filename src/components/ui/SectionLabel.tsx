@@ -22,7 +22,7 @@ export function SectionLabel({
   return (
     <span className={`inline-flex items-center gap-3 ${color}`}>
       <span className="tick" />
-      <span className="font-mono text-[11px] uppercase tracking-eyebrow">{children}</span>
+      <span className="font-mono text-rotulo uppercase tracking-eyebrow">{children}</span>
     </span>
   );
 }

@@ -29,7 +29,6 @@ export const HERO = {
   eyebrow: "Holding de tecnologia e operações digitais",
   linhas: ["Uma estrutura", "central para marcas", "que precisam operar."],
   sub: "A SAtomiq desenvolve as tecnologias, os sistemas e os processos que sustentam empresas em áreas diferentes. Conecta conhecimento, automação e estratégia em soluções que podem ser replicadas, aprimoradas e escaladas.",
-  pilares: ["Eficiência", "Automação", "Inovação"],
 };
 
 // ──────────────────────────────────────────────────────────────
@@ -69,14 +68,14 @@ export const PILARES: Pilar[] = [
     nome: "Eficiência",
     tese: "Eliminar desperdício, otimizar processos, reduzir esforço humano.",
     corpo: "Antes de automatizar qualquer coisa, o processo é enxugado. Automatizar um fluxo ruim só faz o erro acontecer mais rápido e em maior escala.",
-    legenda: "Quatro volumes viram um. O que saiu continua ali como aresta: mesmo volume, sem massa.",
+    legenda: "Os que saíram descem só como aresta — mesmo volume, sem massa. Sólido, e com sombra, sobrou um.",
   },
   {
     chave: "automacao",
     nome: "Automação",
     tese: "Transformar tarefas manuais em sistemas contínuos, inteligentes e autônomos.",
     corpo: "Não é agendar um robô e torcer. É um sistema que decide, registra o que fez, avisa quando não sabe e devolve o controle para uma pessoa no momento certo.",
-    legenda: "Um circuito fechado, com as peças nos quatro cantos. A que está em serviço é a única que sai do chão.",
+    legenda: "Um circuito fechado, uma peça em cada canto. A que está em serviço é a única que sai do chão.",
   },
   {
     chave: "inovacao",

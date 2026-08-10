@@ -11,13 +11,11 @@ export function Arthur() {
   return (
     <Secao id="arthur" rotulo={ARTHUR_BIO.eyebrow}>
       <Reveal>
-        <h2 className="text-[clamp(1.9rem,4.2vw,3.1rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-paper">
-          {ARTHUR_BIO.nome}
-        </h2>
-        <p className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-cobre">
+        <h2 className="text-secao font-semibold text-paper">{ARTHUR_BIO.nome}</h2>
+        <p className="mt-3 font-mono text-rotulo uppercase tracking-eyebrow text-cobre">
           {ARTHUR_BIO.papel}
         </p>
-        <div className="mt-9 flex max-w-[62ch] flex-col gap-5 text-[1.05rem] leading-relaxed text-mist">
+        <div className="mt-9 flex max-w-[62ch] flex-col gap-5 text-corpo text-mist">
           {ARTHUR_BIO.paragrafos.map((t) => (
             <p key={t.slice(0, 24)}>{t}</p>
           ))}
@@ -30,7 +28,7 @@ export function Arthur() {
             href={LINKS.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-mono text-[11px] uppercase tracking-[0.14em] text-sea transition-colors hover:text-paper"
+            className="font-mono text-rotulo uppercase tracking-eyebrow text-sea transition-colors hover:text-paper"
           >
             {LINKS.instagramHandle}
           </a>

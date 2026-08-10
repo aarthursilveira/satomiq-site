@@ -142,6 +142,21 @@
   .num {
     font-variant-numeric: tabular-nums;
   }
+  /* Fora da tela até receber foco. Não é `display:none` nem `visibility`: os
+     dois tirariam o link do foco, que é justamente para o que ele serve. */
+  .pular {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 70;
+    transform: translateY(-160%);
+    @apply bg-cobre px-5 py-3 font-mono text-botao font-medium uppercase tracking-botao text-ink;
+    transition: transform 0.25s var(--ease-spring);
+  }
+  .pular:focus-visible {
+    transform: translateY(0);
+  }
+
   /* O losango virou a marca da casa. Como bullet ele competiria com ela em toda
      seção — o rótulo agora abre com uma régua curta, que não tem dono. */
   .tick {

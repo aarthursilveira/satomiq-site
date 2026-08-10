@@ -6,6 +6,11 @@ import { Button } from "./ui/Button";
 /**
  * Sem framer-motion. O menu fica sempre montado e alterna por CSS — assim ele
  * também existe no HTML pré-renderizado, em vez de aparecer só depois do JS.
+ *
+ * O botão da barra é fantasma, não branco. Branco sobre ink é 13,78:1: era o
+ * pixel mais forte da página inteira, aceso ao lado do botão cobre do hero, os
+ * dois com cara de principal e apontando para lugares diferentes. Um botão
+ * cheio por dobra; o cheio é o do conteúdo, não o do mobiliário.
  */
 export function Nav() {
   const [rolou, setRolou] = useState(false);
@@ -49,7 +54,7 @@ export function Nav() {
             <a
               key={item.href}
               href={item.href}
-              className="group relative font-mono text-[11px] uppercase tracking-[0.14em] text-sea transition-colors hover:text-paper"
+              className="group relative font-mono text-rotulo uppercase tracking-eyebrow text-sea transition-colors hover:text-paper"
             >
               {item.label}
               <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-cobre transition-all duration-500 ease-spring group-hover:w-full" />
@@ -58,7 +63,7 @@ export function Nav() {
         </div>
 
         <div className="hidden md:block">
-          <Button href={LINKS.contato} variant="primary" icon="arrow">
+          <Button href={LINKS.contato} variant="ghost" icon="whatsapp" className="px-5 py-3">
             Falar com Arthur
           </Button>
         </div>
@@ -113,7 +118,7 @@ export function Nav() {
           Contato
         </a>
         <div className="mt-4">
-          <Button href={LINKS.contato} variant="primary">
+          <Button href={LINKS.contato} variant="cobre" icon="whatsapp">
             Falar com Arthur
           </Button>
         </div>

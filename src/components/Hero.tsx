@@ -9,6 +9,11 @@ import { MarcaSAtomiq, MarcaNectarq, MarcaMaarkio } from "./Marks";
  * com as marcas de verdade: núcleo à esquerda, régua, as duas marcas à direita.
  * É a página explicada numa linha — sem diagrama de átomo, que era justamente
  * o erro do site anterior.
+ *
+ * Saiu daqui a lista "Eficiência · Automação · Inovação": eram as três palavras
+ * que abrem a seção Pilares logo abaixo, iguais. Numa página que existe para
+ * explicar, spoiler de si mesma é peso morto na primeira dobra — e uma holding
+ * se define pelo que ela detém, então quem fica é a arquitetura.
  */
 const ARQUITETURA = [
   { Marca: MarcaNectarq, nome: "Nectarq", papel: "atendimento" },
@@ -17,13 +22,13 @@ const ARQUITETURA = [
 
 export function Hero() {
   return (
-    <section id="topo" className="relative px-5 pb-24 pt-40 sm:px-8 sm:pt-48">
+    <section id="topo" className="relative px-5 pb-28 pt-40 sm:px-8 sm:pt-48">
       <div className="mx-auto max-w-[1180px]">
         <Reveal aoCarregar>
           <SectionLabel>{HERO.eyebrow}</SectionLabel>
         </Reveal>
 
-        <h1 className="mt-8 text-balance text-[clamp(2.5rem,7.5vw,5.6rem)] font-semibold leading-[0.98] tracking-[-0.035em] text-paper">
+        <h1 className="mt-8 text-balance text-display font-semibold text-paper">
           {/* A classe vai direto no span: um <div> dentro de <h1> é HTML
               inválido, e o HTML agora é pré-renderizado e realmente lido. */}
           {HERO.linhas.map((linha, i) => (
@@ -38,9 +43,7 @@ export function Hero() {
         </h1>
 
         <Reveal aoCarregar delay={0.28}>
-          <p className="mt-9 max-w-[60ch] text-[clamp(1rem,1.5vw,1.15rem)] leading-relaxed text-mist">
-            {HERO.sub}
-          </p>
+          <p className="mt-9 max-w-[60ch] text-corpo text-mist">{HERO.sub}</p>
         </Reveal>
 
         <Reveal aoCarregar delay={0.34}>
@@ -54,24 +57,14 @@ export function Hero() {
           </div>
         </Reveal>
 
-        <Reveal aoCarregar delay={0.4}>
-          <ul className="mt-12 flex flex-wrap gap-x-8 gap-y-2 font-mono text-[11px] uppercase tracking-[0.14em] text-sea">
-            {HERO.pilares.map((p) => (
-              <li key={p}>{p}</li>
-            ))}
-          </ul>
-        </Reveal>
-
-        <Reveal aoCarregar delay={0.48}>
+        <Reveal aoCarregar delay={0.42}>
           <div className="mt-20 border-t border-linesoft pt-8">
             <div className="flex flex-wrap items-center gap-x-8 gap-y-6">
               <div className="flex items-center gap-3.5">
                 <MarcaSAtomiq familia className="h-9 w-9 text-paper" />
                 <div className="leading-tight">
-                  <p className="text-[15px] font-semibold tracking-tight text-paper">SAtomiq</p>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-sea">
-                    núcleo
-                  </p>
+                  <p className="text-miudo font-semibold tracking-tight text-paper">SAtomiq</p>
+                  <p className="font-mono text-[10px] uppercase tracking-eyebrow text-sea">núcleo</p>
                 </div>
               </div>
 
@@ -82,8 +75,8 @@ export function Hero() {
                   <div key={nome} className="flex items-center gap-3.5">
                     <Marca familia className="h-9 w-9 text-paper" />
                     <div className="leading-tight">
-                      <p className="text-[15px] font-semibold tracking-tight text-paper">{nome}</p>
-                      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-sea">
+                      <p className="text-miudo font-semibold tracking-tight text-paper">{nome}</p>
+                      <p className="font-mono text-[10px] uppercase tracking-eyebrow text-sea">
                         {papel}
                       </p>
                     </div>

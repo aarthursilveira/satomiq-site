@@ -32,8 +32,25 @@ export default {
         sans: ['"Geist"', "system-ui", "sans-serif"],
         mono: ['"Geist Mono"', "ui-monospace", "monospace"],
       },
+      // Uma escala só. Antes eram treze tamanhos avulsos escritos direto na
+      // classe — 1,6 e 1,75rem para o mesmo h3, 0,9 / 0,94 / 1 / 1,05 para o
+      // mesmo parágrafo. Diferença que ninguém lê como intenção, só como ruído.
+      // Razão ~1,35 entre os três níveis de manchete.
+      fontSize: {
+        display: ["clamp(2.5rem,7.5vw,5.6rem)", { lineHeight: "0.98", letterSpacing: "-0.035em" }],
+        fecho: ["clamp(2.2rem,5.6vw,4.2rem)", { lineHeight: "1.0", letterSpacing: "-0.035em" }],
+        secao: ["clamp(1.9rem,4.2vw,3.1rem)", { lineHeight: "1.05", letterSpacing: "-0.03em" }],
+        citacao: ["clamp(1.25rem,2.4vw,1.7rem)", { lineHeight: "1.35", letterSpacing: "-0.02em" }],
+        cartao: ["1.7rem", { lineHeight: "1.15", letterSpacing: "-0.025em" }],
+        tese: ["1.15rem", { lineHeight: "1.4", letterSpacing: "-0.01em" }],
+        corpo: ["1.05rem", { lineHeight: "1.7" }],
+        miudo: ["0.94rem", { lineHeight: "1.65" }],
+        rotulo: ["11px", { lineHeight: "1.5" }],
+        botao: ["12px", { lineHeight: "1" }],
+      },
       letterSpacing: {
-        eyebrow: "0.16em",
+        eyebrow: "0.14em",
+        botao: "0.12em",
       },
       keyframes: {
         blink: { "0%,100%": { opacity: "1" }, "50%": { opacity: "0" } },

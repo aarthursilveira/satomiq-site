@@ -13,10 +13,15 @@ import { ArrowUpRight } from "@phosphor-icons/react";
  *
  * Sem crachá de status: não dá para afirmar em que pé cada produto está sem o
  * Arthur confirmar, e claim que não se sustenta é pior que claim nenhum.
+ *
+ * O hover é o acento CHEIO. Era `/50`, que sobre surface compõe 2,18:1 (aço) e
+ * 2,79:1 (latão) — abaixo do 3:1 de borda de componente (WCAG 1.4.11) e, pior,
+ * MENOS visível que a borda em repouso (3,25:1): apontar o cartão apagava a
+ * borda dele.
  */
 const TEMA = {
-  nectarq: { Marca: MarcaNectarq, texto: "text-aco", borda: "hover:border-aco/50", risco: "bg-aco" },
-  maarkio: { Marca: MarcaMaarkio, texto: "text-latao", borda: "hover:border-latao/50", risco: "bg-latao" },
+  nectarq: { Marca: MarcaNectarq, texto: "text-aco", borda: "hover:border-aco", risco: "bg-aco" },
+  maarkio: { Marca: MarcaMaarkio, texto: "text-latao", borda: "hover:border-latao", risco: "bg-latao" },
 } as const;
 
 function Cartao({ p }: { p: Produto }) {
@@ -29,19 +34,17 @@ function Cartao({ p }: { p: Produto }) {
       <header className="flex flex-col gap-5">
         <Marca familia className="h-11 w-11 shrink-0 text-paper" />
         <div>
-          <h3 className="text-[1.75rem] font-semibold tracking-[-0.025em] text-paper">{p.nome}</h3>
-          <p className={`mt-1 font-mono text-[11px] uppercase tracking-[0.14em] ${t.texto}`}>
+          <h3 className="text-cartao font-semibold text-paper">{p.nome}</h3>
+          <p className={`mt-1.5 font-mono text-rotulo uppercase tracking-eyebrow ${t.texto}`}>
             {p.categoria}
           </p>
         </div>
       </header>
 
-      <p className="text-balance text-[1.2rem] font-medium leading-snug tracking-[-0.015em] text-paper">
-        {p.tese}
-      </p>
-      <p className="leading-relaxed text-mist">{p.corpo}</p>
+      <p className="text-balance text-tese font-medium text-paper">{p.tese}</p>
+      <p className="text-corpo text-mist">{p.corpo}</p>
 
-      <ul className="flex flex-col gap-2.5 border-t border-linesoft pt-6 text-[0.94rem] text-mist">
+      <ul className="flex flex-col gap-2.5 border-t border-linesoft pt-6 text-miudo text-mist">
         {p.capacidades.map((c) => (
           <li key={c} className="flex gap-3">
             <span className={`mt-2.5 h-px w-3 shrink-0 ${t.risco} opacity-70`} aria-hidden />
@@ -55,7 +58,7 @@ function Cartao({ p }: { p: Produto }) {
         href={p.cta.href}
         target="_blank"
         rel="noopener noreferrer"
-        className={`group mt-auto inline-flex items-center gap-2.5 pt-2 font-mono text-[11px] uppercase tracking-[0.14em] after:absolute after:inset-0 after:content-[''] ${t.texto}`}
+        className={`group mt-auto inline-flex items-center gap-2.5 pt-2 font-mono text-rotulo uppercase tracking-eyebrow after:absolute after:inset-0 after:content-[''] ${t.texto}`}
       >
         {p.cta.label}
         <ArrowUpRight
@@ -71,10 +74,10 @@ export function Onde() {
   return (
     <Secao id="onde" rotulo={ONDE_INTRO.eyebrow}>
       <Reveal>
-        <h2 className="max-w-[20ch] text-balance text-[clamp(1.9rem,4.2vw,3.1rem)] font-semibold leading-[1.05] tracking-[-0.03em] text-paper">
+        <h2 className="max-w-[20ch] text-balance text-secao font-semibold text-paper">
           {ONDE_INTRO.titulo}
         </h2>
-        <p className="mt-6 max-w-[62ch] leading-relaxed text-mist">{ONDE_INTRO.corpo}</p>
+        <p className="mt-6 max-w-[62ch] text-corpo text-mist">{ONDE_INTRO.corpo}</p>
       </Reveal>
 
       <RevealGroup className="mt-14 grid gap-6 md:grid-cols-2">

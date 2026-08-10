@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { ArrowUpRight, WhatsappLogo } from "@phosphor-icons/react";
+import { ArrowUpRight, ArrowDown, WhatsappLogo } from "@phosphor-icons/react";
 
 type Variant = "primary" | "cobre" | "ghost";
 
@@ -25,19 +25,26 @@ export function Button({
   className?: string;
 }) {
   const external = !href.startsWith("#");
+  // A seta ↗ é uma promessa: "isto sai da página". Numa âncora interna ela
+  // mente. O ícone segue o destino, não o gosto de quem chamou o componente —
+  // assim o erro não volta na próxima vez que alguém puser icon="arrow".
+  const Seta = external ? ArrowUpRight : ArrowDown;
+  const gesto = external
+    ? "group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+    : "group-hover:translate-y-0.5";
   return (
     <a
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
-      className={`group inline-flex items-center gap-3 px-6 py-3.5 font-mono text-[12px] font-medium uppercase tracking-[0.12em] transition-all duration-500 ease-spring active:translate-y-px ${styles[variant]} ${className}`}
+      className={`group inline-flex items-center gap-3 px-6 py-3.5 font-mono text-botao font-medium uppercase tracking-botao transition-all duration-500 ease-spring active:translate-y-px ${styles[variant]} ${className}`}
     >
       {icon === "whatsapp" && <WhatsappLogo weight="fill" className="h-4 w-4 shrink-0" />}
       <span>{children}</span>
       {icon === "arrow" && (
-        <ArrowUpRight
+        <Seta
           weight="bold"
-          className="h-4 w-4 shrink-0 transition-transform duration-500 ease-spring group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+          className={`h-4 w-4 shrink-0 transition-transform duration-500 ease-spring ${gesto}`}
         />
       )}
     </a>
