@@ -1,18 +1,27 @@
 import type { ReactNode } from "react";
 
-/** Eyebrow editorial com diamond bullet. */
+/**
+ * Rótulo de seção. Abre com uma régua curta, não com um losango: o losango
+ * agora é a marca da SAtomiq e não pode virar bullet decorativo em toda seção.
+ */
 export function SectionLabel({
   children,
-  tone = "ink",
+  tone = "sea",
 }: {
   children: ReactNode;
-  tone?: "ink" | "paper" | "accent";
+  tone?: "sea" | "cobre" | "aco" | "latao";
 }) {
   const color =
-    tone === "paper" ? "text-paper/60" : tone === "accent" ? "text-accent" : "text-ink/55";
+    tone === "cobre"
+      ? "text-cobre"
+      : tone === "aco"
+        ? "text-aco"
+        : tone === "latao"
+          ? "text-latao"
+          : "text-sea";
   return (
-    <span className={`inline-flex items-center gap-2.5 ${color}`}>
-      <span className="diamond opacity-80" />
+    <span className={`inline-flex items-center gap-3 ${color}`}>
+      <span className="tick" />
       <span className="font-mono text-[11px] uppercase tracking-eyebrow">{children}</span>
     </span>
   );

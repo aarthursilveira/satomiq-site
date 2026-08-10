@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="SAtomiq">
+  <rect width="512" height="512" fill="#141A1A"/>
+  <g transform="translate(31.925, 31.925) scale(9.336)">
+    <path fill-rule="evenodd" d="M25.768 8.768L39.232 22.232A2.5 2.5 0 0 1 39.232 25.768L25.768 39.232A2.5 2.5 0 0 1 22.232 39.232L8.768 25.768A2.5 2.5 0 0 1 8.768 22.232L22.232 8.768A2.5 2.5 0 0 1 25.768 8.768ZM18 19.5L18 28.5A1.5 1.5 0 0 0 19.5 30L28.5 30A1.5 1.5 0 0 0 30 28.5L30 19.5A1.5 1.5 0 0 0 28.5 18L19.5 18A1.5 1.5 0 0 0 18 19.5Z" fill="#DDE5E7"/>
+  </g>
+</svg>

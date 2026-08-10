@@ -1,120 +1,111 @@
 import { motion } from "framer-motion";
-import { ArrowDown } from "@phosphor-icons/react";
 import { HERO, LINKS } from "../lib/content";
 import { Button } from "./ui/Button";
-import { RedTeamViz } from "./RedTeamViz";
+import { SectionLabel } from "./ui/SectionLabel";
+import { MarcaSAtomiq, MarcaNectarq, MarcaMaarkio } from "./Marks";
 
 const SPRING = [0.16, 1, 0.3, 1] as const;
 
+const linha = (i: number) => ({
+  initial: { opacity: 0, y: 28, filter: "blur(8px)" },
+  animate: { opacity: 1, y: 0, filter: "blur(0px)" },
+  transition: { duration: 0.9, delay: 0.15 + i * 0.09, ease: SPRING },
+});
+
+/**
+ * A dobra abre com a tese em tipo e, logo abaixo, a arquitetura desenhada com
+ * as marcas de verdade: núcleo à esquerda, régua, os dois elétrons à direita.
+ * É a página inteira explicada numa linha — sem diagrama de átomo, que era
+ * justamente o erro do site anterior.
+ */
 export function Hero() {
   return (
-    <section
-      id="top"
-      className="relative mx-auto flex min-h-[100dvh] max-w-[1400px] items-center px-5 pt-28 sm:px-8"
-    >
-      <div className="grid w-full grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-8">
-        {/* Esquerda — conteúdo */}
-        <div className="lg:col-span-7">
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: SPRING, delay: 0.2 }}
-            className="flex items-center gap-2.5 text-ink/55"
-          >
-            <span className="diamond opacity-80" />
-            <span className="font-mono text-[11px] uppercase tracking-eyebrow">{HERO.eyebrow}</span>
-          </motion.div>
+    <section id="topo" className="relative px-5 pb-24 pt-40 sm:px-8 sm:pt-48">
+      <div className="mx-auto max-w-[1180px]">
+        <motion.div {...linha(0)}>
+          <SectionLabel>{HERO.eyebrow}</SectionLabel>
+        </motion.div>
 
-          <h1 className="mt-7 font-display text-[12vw] font-medium leading-[0.98] tracking-tight text-ink sm:text-6xl lg:text-7xl xl:text-[5.2rem]">
-            <Line delay={0.28}>{HERO.line1}</Line>
-            <Line delay={0.38}>{HERO.line2}</Line>
-            <Line delay={0.48}>
-              {HERO.line3a}
-              <span className="italic text-accent">{HERO.line3accent}</span>
-            </Line>
-          </h1>
+        <h1 className="mt-8 text-balance text-[clamp(2.6rem,8.5vw,6.2rem)] font-semibold leading-[0.95] tracking-[-0.035em] text-paper">
+          <motion.span className="block" {...linha(1)}>
+            {HERO.line1}
+          </motion.span>
+          <motion.span className="block" {...linha(2)}>
+            {HERO.line2}
+          </motion.span>
+          <motion.span className="block text-cobre" {...linha(3)}>
+            {HERO.line3}
+          </motion.span>
+        </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: SPRING, delay: 0.7 }}
-            className="mt-8 max-w-xl text-[17px] leading-relaxed text-ink-soft"
-          >
-            {HERO.sub}
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: SPRING, delay: 0.85 }}
-            className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
-          >
-            <Button href={LINKS.belaLive} variant="accent" icon="whatsapp">
-              Testar a Bela ao vivo
-            </Button>
-            <Button href="#produto" variant="ghost" icon="arrow">
-              Ver como funciona
-            </Button>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, ease: SPRING, delay: 1.05 }}
-            className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-2 border-t border-ink/15 pt-5 font-mono text-[11px] uppercase tracking-[0.16em] text-ink/55"
-          >
-            {HERO.meta.map((m, i) => (
-              <span key={m} className="flex items-center gap-5">
-                {i > 0 && <span className="text-ink/25">·</span>}
-                {m}
-              </span>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* Direita — viz red-team (protagonista) */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: SPRING, delay: 0.5 }}
-          className="lg:col-span-5"
+        <motion.p
+          className="mt-9 max-w-[58ch] text-[clamp(1rem,1.5vw,1.15rem)] leading-relaxed text-mist"
+          {...linha(4)}
         >
-          <div className="relative mx-auto aspect-square w-full max-w-md border border-ink/12 bg-paper-2/40 p-3">
-            <RedTeamViz />
+          {HERO.sub}
+        </motion.p>
+
+        <motion.div className="mt-11 flex flex-wrap items-center gap-4" {...linha(5)}>
+          <Button href={LINKS.contato} variant="cobre" icon="whatsapp">
+            Falar com Arthur
+          </Button>
+          <Button href="#eletrons" variant="ghost" icon="arrow">
+            Ver os produtos
+          </Button>
+        </motion.div>
+
+        <motion.ul
+          className="mt-12 flex flex-wrap gap-x-8 gap-y-2 font-mono text-[11px] uppercase tracking-[0.12em] text-sea"
+          {...linha(6)}
+        >
+          {HERO.meta.map((m) => (
+            <li key={m}>{m}</li>
+          ))}
+        </motion.ul>
+
+        {/* A arquitetura, com as marcas reais */}
+        <motion.div
+          className="mt-20 border-t border-line pt-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.9, ease: SPRING }}
+        >
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-6">
+            <div className="flex items-center gap-3.5">
+              <MarcaSAtomiq familia className="h-9 w-9 text-paper" />
+              <div className="leading-tight">
+                <p className="text-[15px] font-semibold tracking-tight text-paper">SAtomiq</p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-sea">
+                  núcleo
+                </p>
+              </div>
+            </div>
+
+            <div className="hidden h-px flex-1 bg-line sm:block" />
+
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-6">
+              <div className="flex items-center gap-3.5">
+                <MarcaNectarq familia className="h-9 w-9 text-paper" />
+                <div className="leading-tight">
+                  <p className="text-[15px] font-semibold tracking-tight text-paper">Nectarq</p>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-sea">
+                    atendimento
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3.5">
+                <MarcaMaarkio familia className="h-9 w-9 text-paper" />
+                <div className="leading-tight">
+                  <p className="text-[15px] font-semibold tracking-tight text-paper">Maarkio</p>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-sea">
+                    agendamento
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </motion.div>
       </div>
-
-      <motion.a
-        href="#manifesto"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.3, duration: 1 }}
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink/45 sm:flex"
-      >
-        Scroll
-        <motion.span
-          animate={{ y: [0, 5, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
-        >
-          <ArrowDown weight="bold" className="h-3 w-3" />
-        </motion.span>
-      </motion.a>
     </section>
-  );
-}
-
-function Line({ children, delay }: { children: React.ReactNode; delay: number }) {
-  return (
-    <span className="block overflow-hidden">
-      <motion.span
-        initial={{ y: "110%" }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.9, ease: SPRING, delay }}
-        className="block"
-      >
-        {children}
-      </motion.span>
-    </span>
   );
 }

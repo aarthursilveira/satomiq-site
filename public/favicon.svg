@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="SAtomiq">
+  <!-- Fundo sólido: a aba do navegador tem tema próprio e não dá pra confiar
+       nela. Usa a arte PEQUENA, não a cheia reduzida. -->
+  <rect width="48" height="48" rx="10" fill="#141A1A"/>
+  <path fill-rule="evenodd" d="M25.768 8.768L39.232 22.232A2.5 2.5 0 0 1 39.232 25.768L25.768 39.232A2.5 2.5 0 0 1 22.232 39.232L8.768 25.768A2.5 2.5 0 0 1 8.768 22.232L22.232 8.768A2.5 2.5 0 0 1 25.768 8.768ZM19.5 21L19.5 27A1.5 1.5 0 0 0 21 28.5L27 28.5A1.5 1.5 0 0 0 28.5 27L28.5 21A1.5 1.5 0 0 0 27 19.5L21 19.5A1.5 1.5 0 0 0 19.5 21Z" fill="#DDE5E7"/>
+</svg>

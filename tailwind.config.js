@@ -1,49 +1,41 @@
 /** @type {import('tailwindcss').Config} */
+// Tokens espelhados de Documents/satomiq-brand/tokens.css.
+// A marca é dark-first: o escuro é o padrão, não um "modo".
 export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        paper: "#F4F1EC",
-        "paper-2": "#ECE7DF",
-        ink: "#141414",
-        "ink-soft": "#2A2A2A",
-        // único acento — vermelho "red-team", dessaturado (não neon)
-        accent: {
-          DEFAULT: "#C8462F",
-          soft: "#D9694F",
-        },
+        // espinha estrutural — compartilhada pela família
+        ink: "#141A1A", // fundo
+        surface: "#1C2424", // cartão, 1ª elevação
+        raised: "#26302F", // 2ª elevação, hover
+        line: "#36585A", // régua e borda
+        sea: "#7FA0A2", // rótulo, metadado · 6,25:1
+        mist: "#B4C2C5", // texto secundário · 9,61:1
+        paper: "#DDE5E7", // texto principal · 13,78:1
+
+        // acentos — um por marca, NUNCA misturados na mesma dobra
+        cobre: "#BC784B", // SAtomiq, institucional · 4,97:1
+        latao: "#D9A43D", // Maarkio · 7,82:1
+        aco: "#5E8ECC", // Nectarq · 5,21:1
+
+        ok: "#6FA986",
+        warn: "#C9A24B",
+        bad: "#C9635B",
       },
       fontFamily: {
-        display: ['"Fraunces"', "serif"],
         sans: ['"Geist"', "system-ui", "sans-serif"],
-        mono: ['"JetBrains Mono"', "ui-monospace", "monospace"],
+        mono: ['"Geist Mono"', "ui-monospace", "monospace"],
       },
       letterSpacing: {
-        eyebrow: "0.28em",
-      },
-      boxShadow: {
-        // sombras tingidas no tom do fundo (nunca preto duro)
-        paper: "0 30px 60px -28px rgba(20,20,20,0.18)",
-        lift: "0 40px 80px -34px rgba(20,20,20,0.28)",
+        eyebrow: "0.16em",
       },
       keyframes: {
-        scanline: {
-          "0%": { transform: "translateY(0)" },
-          "100%": { transform: "translateY(100%)" },
-        },
-        blink: {
-          "0%,100%": { opacity: "1" },
-          "50%": { opacity: "0" },
-        },
-        marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
+        blink: { "0%,100%": { opacity: "1" }, "50%": { opacity: "0" } },
       },
       animation: {
         blink: "blink 1.1s step-end infinite",
-        marquee: "marquee 40s linear infinite",
       },
     },
   },

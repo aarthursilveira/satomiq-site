@@ -1,234 +1,215 @@
 // ──────────────────────────────────────────────────────────────
-// Contatos reais (preservados do site atual)
+// Todo o texto do site mora aqui. Componente não escreve copy.
 // ──────────────────────────────────────────────────────────────
+
 const ARTHUR = "5519984185278"; // WhatsApp comercial (Arthur)
-const BELA = "5519997581378"; // WhatsApp da Bela (demo ao vivo)
+const BELA = "5519997581378"; // WhatsApp da Bela — demo ao vivo do Nectarq
 
 const wa = (num: string, text: string) =>
   `https://wa.me/${num}?text=${encodeURIComponent(text)}`;
 
 export const LINKS = {
-  diagnostico: wa(ARTHUR, "Oi Arthur, quero o diagnóstico de 20 minutos."),
-  belaLive: wa(BELA, "Oi Bela, vim do site da SAtomiq."),
-  planoEssencial: wa(ARTHUR, "Oi Arthur, quero o plano Essencial."),
-  planoPro: wa(ARTHUR, "Oi Arthur, quero o plano Pro."),
-  planoCustom: wa(ARTHUR, "Oi Arthur, preciso de algo customizado."),
+  contato: wa(ARTHUR, "Oi Arthur, vim pelo site da SAtomiq."),
+  sobMedida: wa(ARTHUR, "Oi Arthur, quero conversar sobre um sistema sob medida."),
+  nectarq: wa(ARTHUR, "Oi Arthur, quero conhecer o Nectarq."),
+  maarkio: wa(ARTHUR, "Oi Arthur, quero conhecer o Maarkio."),
+  belaLive: wa(BELA, "Oi, vim do site da SAtomiq."),
   belaNumeroDisplay: "19 99758-1378",
   instagram: "https://instagram.com/aarthursilveira",
   instagramHandle: "@aarthursilveira",
 };
 
 export const NAV = [
-  { label: "Método", href: "#manifesto" },
-  { label: "Produto", href: "#produto" },
-  { label: "Caso real", href: "#caso" },
-  { label: "Investimento", href: "#investimento" },
-  { label: "Dúvidas", href: "#faq" },
+  { label: "Elétrons", href: "#eletrons" },
+  { label: "Núcleo", href: "#nucleo" },
+  { label: "Método", href: "#metodo" },
+  { label: "Em produção", href: "#producao" },
 ];
 
 // ──────────────────────────────────────────────────────────────
 // Hero
 // ──────────────────────────────────────────────────────────────
 export const HERO = {
-  eyebrow: "Atendente Digital · WhatsApp · 24/7",
-  // headline em linhas (a última recebe o acento)
-  line1: "Atendimento que",
-  line2: "conversa, qualifica",
-  line3a: "e fecha — ",
-  line3accent: "sozinho.",
-  sub: "Atendente digital via WhatsApp para clínicas, serviços e operações com fluxo ativo. Desenhado com red team antes da primeira linha. Em 7 dias, rodando.",
-  meta: ["Resposta < 3s", "Operação 24h · 7 dias", "Implantação em 7 dias"],
+  eyebrow: "Núcleo de tecnologia e IA aplicada",
+  line1: "O núcleo que",
+  line2: "os produtos",
+  line3: "usam.",
+  sub: "A SAtomiq constrói a camada de baixo: orquestração de modelos, infraestrutura, operação — e o red team que ataca a arquitetura antes dela virar código. Em cima dela rodam os produtos da casa e os sistemas sob medida.",
+  meta: ["Dois produtos", "Red team antes da primeira linha", "Em produção 24/7"],
 };
 
 // ──────────────────────────────────────────────────────────────
-// Manifesto — DNA da casa (3 atos, claro → escuro)
+// Os elétrons — os produtos da casa
 // ──────────────────────────────────────────────────────────────
-export const MANIFESTO = [
+export const ELETRONS_INTRO = {
+  eyebrow: "Os elétrons",
+  titulo: "Dois produtos. O mesmo núcleo embaixo.",
+  corpo: "Cada um resolve um problema inteiro, com marca, painel e cliente próprios. Nenhum dos dois reconstrói infraestrutura, orquestração de modelo ou monitoramento — isso vem de baixo, pronto.",
+};
+
+export type Eletron = {
+  slug: "nectarq" | "maarkio";
+  nome: string;
+  categoria: string;
+  status: string;
+  emProducao: boolean;
+  tese: string;
+  corpo: string;
+  capacidades: string[];
+  nota?: string;
+  cta: { label: string; href: string };
+};
+
+export const ELETRONS: Eletron[] = [
   {
-    eyebrow: "DNA da casa",
-    title: ["A maioria usa IA", "para executar."],
-    body: "Gerar texto. Responder pergunta. Fazer tarefa. É útil — e é a camada mais rasa que existe.",
+    slug: "nectarq",
+    nome: "Nectarq",
+    categoria: "Atendimento no WhatsApp",
+    status: "Em produção",
+    emProducao: true,
+    tese: "Atendimento que parece gente — porque entende como gente fala.",
+    corpo:
+      "Não é chatbot de botão. Entende áudio, texto e imagem, responde em linguagem natural no tom da marca, qualifica pelas suas regras e passa o bastão para a equipe humana com o resumo pronto.",
+    capacidades: [
+      "Áudio, texto e imagem — em qualquer duração",
+      "Persona e roteiro no tom da marca, clínica ou empresa",
+      "Painel com todas as conversas, controle do bot e envio manual",
+      "Integração com a agenda do lugar",
+      "Follow-up e reativação de quem sumiu",
+    ],
+    nota:
+      "Está virando também secretário do próprio profissional: quem entra na whitelist manda “amanhã não consigo ir das 16h às 20h, cancela minha agenda” — e também registra o que gastou, o que ganhou e o que precisa lembrar.",
+    cta: { label: "Falar sobre o Nectarq", href: LINKS.nectarq },
+  },
+  {
+    slug: "maarkio",
+    nome: "Maarkio",
+    categoria: "Agendamento",
+    status: "Em desenvolvimento",
+    emProducao: false,
+    tese: "Agendamento que é software, não conversa.",
+    corpo:
+      "UI no navegador, dos dois lados. O profissional ajusta horário, buffer e duração; o cliente marca sozinho, numa página que carrega a cara de quem atende. Para qualquer serviço com hora marcada.",
+    capacidades: [
+      "Painel do profissional: horário, buffer, duração, bloqueio",
+      "Painel do cliente, personalizável por profissional",
+      "Integração com o Google Agenda",
+      "Lembrete automático no WhatsApp do cliente",
+      "Barbearia, clínica, estúdio, consultório — qualquer hora marcada",
+    ],
+    cta: { label: "Falar sobre o Maarkio", href: LINKS.maarkio },
+  },
+];
+
+// ──────────────────────────────────────────────────────────────
+// O núcleo — o que os produtos herdam em vez de reconstruir
+// ──────────────────────────────────────────────────────────────
+export const NUCLEO_INTRO = {
+  eyebrow: "O núcleo",
+  titulo: "O que existe uma vez, e não duas.",
+  corpo: "Produto que nasce dentro da SAtomiq já chega com estas quatro camadas resolvidas. É isso que a holding é — não uma marca guarda-chuva, um estoque de decisões já tomadas.",
+};
+
+// Sem numeração: as quatro camadas não são uma sequência, são um estoque.
+// Numerar sugeriria uma ordem que não existe.
+export const NUCLEO = [
+  {
+    n: "método",
+    t: "Red team antes do código",
+    b: "A arquitetura é atacada no papel: onde quebra, o que um usuário mal-intencionado faz com ela, o que acontece quando o provedor cai no domingo. O que sobrevive ao ataque vira implementação.",
+  },
+  {
+    n: "modelos",
+    t: "Orquestração de modelos",
+    b: "Roteamento entre provedores, retry e fallback automáticos, modelo escolhido pelo esforço que a tarefa pede. Nenhum produto fica refém de uma API que subiu de preço ou saiu do ar.",
+  },
+  {
+    n: "operação",
+    t: "Infraestrutura e operação",
+    b: "Deploy, banco, filas, backup diário e monitoramento contínuo. O produto herda isso pronto em vez de cada um montar o seu — e de cada um quebrar do seu jeito.",
+  },
+  {
+    n: "marca",
+    t: "Sistema de marca",
+    b: "Paleta e símbolos validados em contraste WCAG, espaço OKLCH e simulação de daltonismo. Produto novo nasce com identidade medida, não com um tema improvisado na véspera.",
+  },
+];
+
+// ──────────────────────────────────────────────────────────────
+// Método — o DNA da casa, em três atos
+// ──────────────────────────────────────────────────────────────
+export const METODO = [
+  {
+    eyebrow: "O padrão",
+    titulo: ["A maioria usa IA", "para executar."],
+    corpo: "Gerar texto. Responder pergunta. Fazer tarefa. É útil — e é a camada mais rasa que existe. Também é a que quebra primeiro, porque ninguém perguntou como ela quebra.",
   },
   {
     eyebrow: "A virada",
-    title: ['A pergunta certa não', 'é "como implemento?".'],
-    body: 'É "como isso quebra?". Red team antes da implementação. A arquitetura é atacada no papel antes de virar código.',
-    accent: true,
+    titulo: ["A pergunta certa não", "é “como implemento?”."],
+    corpo: "É “como isso quebra?”. Red team antes da implementação: a arquitetura apanha no papel, onde consertar custa uma conversa em vez de um cliente.",
+    acento: true,
   },
   {
-    eyebrow: "O que entregamos",
-    title: ["Sistemas que pensam", "antes de executar."],
-    body: "Automação com inteligência embutida: documentação, monitoramento e handoff. Resultado que dura — não demo que impressiona.",
+    eyebrow: "O que sai",
+    titulo: ["Sistemas que pensam", "antes de executar."],
+    corpo: "Com documentação, monitoramento e caminho de handoff para gente de verdade. Resultado que dura — não demo que impressiona na reunião e some na segunda semana.",
   },
 ];
 
 // ──────────────────────────────────────────────────────────────
-// Produto — promessas, fluxo, aplicações
+// Em produção — a prova
 // ──────────────────────────────────────────────────────────────
-export const PROMISES = [
-  {
-    num: "01",
-    kicker: "Sempre disponível",
-    title: "Responde em 3 segundos, 24h por dia.",
-    body: "Texto ou áudio, qualquer hora. Domingo 22h: lead recebido é lead respondido — não lead perdido.",
-  },
-  {
-    num: "02",
-    kicker: "Persona sua",
-    title: "Fala como a sua marca fala.",
-    body: "Nome, tom, vocabulário, roteiro. O cliente não sente robô — sente que foi bem atendido.",
-  },
-  {
-    num: "03",
-    kicker: "Recupera lead",
-    title: "Reativa quem sumiu, sozinho.",
-    body: "Em 3, 7, 15 dias, com mensagem nova e contextualizada. Aquece o que ia esfriar na gaveta.",
-  },
-];
-
-export const FLOW = [
-  {
-    n: "Passo 01",
-    title: "Recebe e entende",
-    body: "Texto e áudio em menos de 3 segundos. Compreende contexto, gírias e áudios longos. Mantém memória da conversa.",
-  },
-  {
-    n: "Passo 02",
-    title: "Qualifica nas suas regras",
-    body: "Lê a intenção — dúvida, suporte, interesse real. Faz as perguntas certas na ordem certa e coleta os dados.",
-  },
-  {
-    n: "Passo 03",
-    title: "Passa o bastão",
-    body: "Trava o robô e avisa sua equipe com o resumo da conversa. O time entra já sabendo o que aconteceu.",
-  },
-];
-
-export const APPS = [
-  { num: "01", label: "Comercial", title: "Vendas e qualificação", body: "Atende, qualifica, agenda e entrega o lead já aquecido pro vendedor.", wide: true },
-  { num: "02", label: "RH", title: "Triagem e pré-entrevista", body: "Aplica perguntas-chave, descarta fora de perfil, agenda os qualificados." },
-  { num: "03", label: "SAC", title: "Atendimento e suporte", body: "Resolve dúvida frequente, abre chamado e escala humano nos casos certos." },
-  { num: "04", label: "Pós-venda", title: "Reativação e fidelização", body: "Pesquisa de satisfação, lembrete de retorno, resgate de cliente inativo." },
-  { num: "05", label: "Pré-clínico", title: "Triagem e agendamento", body: "Triagem de procedimento, agendamento e lembrete pré-consulta." },
-  { num: "06", label: "Híbrido", title: "Vários fluxos, um número", body: "Vendas + RH + SAC convivem. O sistema escolhe qual roteiro seguir.", dark: true },
-];
-
-// ──────────────────────────────────────────────────────────────
-// Investimento
-// ──────────────────────────────────────────────────────────────
-export const PRICING = [
-  {
-    name: "Essencial",
-    price: "R$ 897",
-    period: "/ mês",
-    setup: "Setup R$ 1.997",
-    features: ["Atendimento 24/7", "Passagem para equipe", "1 persona customizada", "Até 1.500 conversas/mês"],
-    cta: "Quero esse plano",
-    href: LINKS.planoEssencial,
-  },
-  {
-    name: "Pro",
-    price: "R$ 1.497",
-    period: "/ mês",
-    setup: "Setup R$ 2.997",
-    featured: true,
-    badge: "Mais escolhido",
-    features: ["Tudo do Essencial", "Reativação automática", "Relatórios mensais", "Até 5.000 conversas/mês", "Suporte prioritário"],
-    cta: "Quero o Pro",
-    href: LINKS.planoPro,
-  },
-  {
-    name: "Customizado",
-    price: "R$ 2.497+",
-    period: "/ mês",
-    setup: "Setup sob consulta",
-    features: ["Tudo do Pro", "Integrações (Calendar, CRM)", "Múltiplos fluxos", "Volume ilimitado"],
-    cta: "Conversar com Arthur",
-    href: LINKS.planoCustom,
-  },
-];
-
-export const PRICING_NOTE = "Setup grátis para quem assinar em até 7 dias após a apresentação.";
-
-// ──────────────────────────────────────────────────────────────
-// Caso real — Clínica Tainá
-// ──────────────────────────────────────────────────────────────
-export const CASE = {
-  client: "Clínica Tainá",
-  segment: "Cliente · Estética facial",
-  tagline: "Atendimento conduzido pela Bela.",
+export const PRODUCAO = {
+  eyebrow: "Em produção",
+  titulo: "O método já está rodando na casa de alguém.",
+  cliente: "Clínica Tainá",
+  segmento: "Estética facial",
+  produto: "Nectarq",
+  tagline: "Atendimento conduzido pela persona “Bela”, 24 horas por dia.",
   meta: [
-    { k: "Persona", v: '"Bela" — customizada' },
-    { k: "Operação", v: "24/7 · 7 dias" },
-    { k: "Resposta", v: "< 3 segundos" },
+    { k: "Produto", v: "Nectarq" },
+    { k: "Persona", v: "“Bela”, customizada" },
+    { k: "Operação", v: "24/7" },
     { k: "Status", v: "Em produção" },
   ],
-  capabilities: [
+  capacidades: [
     "Triagem automática: procedimento × dúvida × agendamento",
-    "Reativação contextualizada de leads inativos",
-    "Passagem para equipe humana com resumo completo",
-    "Compreensão de áudio (Whisper) em qualquer duração",
-    "Backup diário automático + monitoramento contínuo",
-    "Retry automático em falhas (Together AI, Groq, Evolution)",
+    "Reativação contextualizada de quem parou de responder",
+    "Passagem para a equipe humana com o resumo da conversa",
+    "Compreensão de áudio em qualquer duração",
+    "Backup diário e monitoramento contínuo",
+    "Retry automático quando um provedor falha",
   ],
   stack: ["n8n", "Together AI", "Groq", "Whisper", "Postgres", "Redis"],
+  demoTitulo: "Ela atende agora.",
+  demoCorpo:
+    "O número abaixo é o mesmo que atende os clientes da clínica. Mande um áudio, faça uma pergunta fora do roteiro, tente derrubar. É o teste mais honesto que existe: o produto responde por si.",
 };
 
 // ──────────────────────────────────────────────────────────────
-// Processo
+// Contato — dois caminhos, nenhum preço
 // ──────────────────────────────────────────────────────────────
-export const PROCESS = [
-  {
-    num: "01",
-    title: "Diagnóstico do seu fluxo",
-    body: "20 minutos de conversa. Entendemos seu volume, seu funil e onde o lead esfria. Você sai com um plano específico — não com proposta genérica.",
-  },
-  {
-    num: "02",
-    title: "Configuração da persona",
-    body: "Nome, tom, vocabulário, regras. Você responde algumas perguntas; a gente monta o roteiro. Treino guiado por você, executado por nós.",
-  },
-  {
-    num: "03",
-    title: "Em 7 dias, rodando",
-    body: "Entra em produção integrado ao seu WhatsApp. Backup, monitoramento e ajustes contínuos inclusos. Você usa — não monta.",
-  },
-];
+export const CONTATO = {
+  eyebrow: "Contato",
+  titulo: "Dois jeitos de entrar.",
+  caminhos: [
+    {
+      t: "Um dos produtos",
+      b: "Nectarq ou Maarkio, com implantação e operação da casa. Preço e prazo saem na conversa, depois de entender seu volume — não antes.",
+      cta: "Falar sobre um produto",
+      href: LINKS.contato,
+    },
+    {
+      t: "Um sistema sob medida",
+      b: "Quando o problema não cabe em produto de prateleira. Começa por um diagnóstico de 20 minutos do seu fluxo, e você sai dele com um plano específico.",
+      cta: "Marcar o diagnóstico",
+      href: LINKS.sobMedida,
+    },
+  ],
+};
 
-// ──────────────────────────────────────────────────────────────
-// FAQ
-// ──────────────────────────────────────────────────────────────
-export const FAQ = [
-  {
-    q: "R$ 897/mês não é caro pra mim?",
-    a: "Um atendente humano com escala 24h custa R$ 8k+/mês com encargos. O sistema custa um quinto disso e responde em 3 segundos no domingo às 22h. A pergunta certa não é se é caro — é quantos leads por mês você precisa recuperar pra pagar. Em geral, um.",
-  },
-  {
-    q: "Já tenho um chatbot. É a mesma coisa?",
-    a: "Não. Chatbot de fluxo segue botões fixos. Aqui é um atendente que entende texto livre, áudio, contexto e gírias, reativa lead que sumiu com mensagem nova e aprende com o seu negócio. É outra categoria de produto.",
-  },
-  {
-    q: "Vou perder o controle do meu atendimento?",
-    a: "Pelo contrário. Você define o roteiro, as regras de quando travar e chamar humano, e o tom da marca. A qualquer momento sua equipe assume — basta responder. O sistema obedece; sua equipe decide.",
-  },
-  {
-    q: "Funciona no meu nicho?",
-    a: "Funciona em qualquer atendimento por WhatsApp com um padrão repetível. Hoje atende clínica de estética; também serve para RH (triagem), SAC, imobiliária e infoproduto. A IA é a mesma — o roteiro é seu.",
-  },
-  {
-    q: "Quanto tempo até entrar no ar?",
-    a: "7 dias após a assinatura. Você responde algumas perguntas sobre o negócio (tom, regras, fluxo); a equipe técnica monta, testa e entrega rodando. Você não toca em código, servidor ou integração.",
-  },
-  {
-    q: "Tem fidelidade? E se eu quiser sair?",
-    a: "Sem multa e sem fidelidade longa. Cancela com 30 dias de aviso. Você leva sua base e seu número. A relação é por resultado.",
-  },
-  {
-    q: "E se a IA falar besteira?",
-    a: "Três camadas de proteção: você define os limites do que ela pode responder; o anti-injection impede desvio de roteiro; e, na dúvida, ela escala para humano em vez de inventar. Pode testar agora mandando uma pergunta aleatória pra Bela.",
-  },
-  {
-    q: "Meus dados ficam seguros?",
-    a: "Backup diário automático, monitoramento contínuo e dados isolados por cliente. Você é dono das conversas, da base e do número. Modelo de DPA disponível para casos que exigem LGPD formal.",
-  },
-];
+export const RODAPE = {
+  linha: "SAtomiq — núcleo de tecnologia e IA aplicada.",
+  eletrons: "Nectarq · Maarkio",
+};

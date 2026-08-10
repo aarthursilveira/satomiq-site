@@ -1,3 +1,41 @@
+/* Geist auto-hospedada (OFL). Sem CDN: a fonte é do sistema de marca e não pode
+   depender de terceiro no ar. Os logotipos já vêm em curvas, mas o texto não. */
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist";
+  src: url("/fonts/Geist-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/GeistMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Geist Mono";
+  src: url("/fonts/GeistMono-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,24 +43,27 @@
 @layer base {
   :root {
     --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    color-scheme: dark;
   }
 
   html {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+    background: #141a1a; /* evita flash claro antes do CSS do body */
   }
 
   body {
-    @apply bg-paper text-ink font-sans antialiased;
+    @apply bg-ink font-sans text-mist antialiased;
     overflow-x: hidden;
   }
 
   ::selection {
-    @apply bg-accent/20 text-ink;
+    @apply bg-cobre/25 text-paper;
   }
 
-  .font-display {
-    font-optical-sizing: auto;
+  :focus-visible {
+    outline: 2px solid #bc784b;
+    outline-offset: 3px;
   }
 }
 
@@ -33,26 +74,27 @@
   .ease-spring {
     transition-timing-function: var(--ease-spring);
   }
-  .eyebrow {
-    @apply font-mono text-[11px] uppercase tracking-eyebrow text-ink/55;
+  .num {
+    font-variant-numeric: tabular-nums;
   }
-  /* hairline diamond bullet (marca) */
-  .diamond {
-    width: 7px;
-    height: 7px;
-    transform: rotate(45deg);
+  /* O losango virou a marca da casa. Como bullet ele competiria com ela em toda
+     seção — o rótulo agora abre com uma régua curta, que não tem dono. */
+  .tick {
     display: inline-block;
+    width: 18px;
+    height: 1px;
     background: currentColor;
+    opacity: 0.6;
   }
 }
 
-/* Film grain fixo — pointer-events none, fixed layer (nunca em container que rola) */
+/* Grão fixo. Camada fixed, nunca dentro de container que rola. */
 .grain {
   position: fixed;
   inset: 0;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.035;
+  opacity: 0.028;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
