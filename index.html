@@ -4,10 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>SAtomiq — o núcleo que os produtos usam</title>
+    <title>SAtomiq — holding de tecnologia e operações digitais</title>
     <meta
       name="description"
-      content="A SAtomiq constrói a camada de baixo: orquestração de modelos, infraestrutura e operação — com red team antes da primeira linha de código. Em cima dela rodam o Nectarq, o Maarkio e os sistemas sob medida."
+      content="A SAtomiq é uma holding voltada à criação, controle e expansão de marcas e operações digitais. Fundada por Arthur Silveira, desenvolve as tecnologias, sistemas e processos que sustentam empresas em áreas diferentes. Pilares: eficiência, automação e inovação."
     />
     <link rel="canonical" href="https://satomiq.com/" />
 
@@ -31,41 +31,67 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://satomiq.com/" />
     <meta property="og:site_name" content="SAtomiq" />
-    <meta property="og:title" content="SAtomiq — o núcleo que os produtos usam" />
+    <meta property="og:title" content="SAtomiq — holding de tecnologia e operações digitais" />
     <meta
       property="og:description"
-      content="Núcleo de tecnologia e IA aplicada. Nectarq (atendimento no WhatsApp), Maarkio (agendamento) e sistemas sob medida."
+      content="Uma estrutura central para marcas que precisam operar. Eficiência, automação e inovação — com Nectarq (atendimento) e Maarkio (agendamento)."
     />
     <meta property="og:image" content="https://satomiq.com/og.png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="SAtomiq — o núcleo que os produtos usam" />
+    <meta property="og:image:alt" content="SAtomiq — uma estrutura central para marcas que precisam operar" />
     <meta property="og:locale" content="pt_BR" />
     <meta name="twitter:card" content="summary_large_image" />
 
+    <!-- Dois nós: a empresa e a pessoa. "Arthur Silveira" precisa existir como
+         entidade própria, ligada à SAtomiq por founder/worksFor nos dois
+         sentidos — é assim que o nome dele é indexado junto com a marca. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "SAtomiq",
-        "url": "https://satomiq.com/",
-        "logo": "https://satomiq.com/icone-app.svg",
-        "image": "https://satomiq.com/og.png",
-        "description": "Núcleo de tecnologia e IA aplicada. Constrói a camada de orquestração de modelos, infraestrutura e operação usada pelos seus produtos e por sistemas sob medida.",
-        "founder": { "@type": "Person", "name": "Arthur Silveira" },
-        "sameAs": ["https://instagram.com/aarthursilveira"],
-        "areaServed": "BR",
-        "knowsLanguage": "pt-BR",
-        "brand": [
+        "@graph": [
           {
-            "@type": "Brand",
-            "name": "Nectarq",
-            "description": "Atendimento no WhatsApp com compreensão de áudio, texto e imagem, qualificação e passagem para equipe humana."
+            "@type": "Organization",
+            "@id": "https://satomiq.com/#organizacao",
+            "name": "SAtomiq",
+            "url": "https://satomiq.com/",
+            "logo": "https://satomiq.com/icone-app.svg",
+            "image": "https://satomiq.com/og.png",
+            "description": "Holding voltada à criação, controle e expansão de marcas e operações digitais. Estrutura central que desenvolve tecnologias, sistemas, processos e inteligência operacional para sustentar empresas em diferentes áreas.",
+            "slogan": "Uma estrutura central para marcas que precisam operar",
+            "knowsAbout": ["Automação de processos", "Inteligência artificial aplicada", "Atendimento automatizado", "Agendamento online"],
+            "founder": { "@id": "https://satomiq.com/#arthur" },
+            "areaServed": "BR",
+            "knowsLanguage": "pt-BR",
+            "brand": [
+              {
+                "@type": "Brand",
+                "name": "Nectarq",
+                "description": "Atendimento no WhatsApp com compreensão de áudio, texto e imagem, qualificação e passagem para equipe humana."
+              },
+              {
+                "@type": "Brand",
+                "name": "Maarkio",
+                "description": "Agendamento em UI de navegador para qualquer serviço com hora marcada."
+              }
+            ]
           },
           {
-            "@type": "Brand",
-            "name": "Maarkio",
-            "description": "Agendamento em UI de navegador para qualquer serviço com hora marcada."
+            "@type": "Person",
+            "@id": "https://satomiq.com/#arthur",
+            "name": "Arthur Silveira",
+            "jobTitle": "Fundador",
+            "description": "Fundador da SAtomiq. Constrói e opera sistemas de automação e inteligência aplicada, atacando a arquitetura no papel antes de escrever a primeira linha de código.",
+            "url": "https://satomiq.com/#arthur",
+            "worksFor": { "@id": "https://satomiq.com/#organizacao" },
+            "sameAs": ["https://instagram.com/aarthursilveira"]
+          },
+          {
+            "@type": "WebSite",
+            "url": "https://satomiq.com/",
+            "name": "SAtomiq",
+            "inLanguage": "pt-BR",
+            "publisher": { "@id": "https://satomiq.com/#organizacao" }
           }
         ]
       }

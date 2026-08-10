@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
-import { Eletrons } from "./components/Eletrons";
-import { Nucleo } from "./components/Nucleo";
-import { Metodo } from "./components/Metodo";
-import { Producao } from "./components/Producao";
+import { OQueE } from "./components/OQueE";
+import { Pilares } from "./components/Pilares";
+import { Onde } from "./components/Onde";
+import { Arthur } from "./components/Arthur";
 import { Contato } from "./components/Contato";
 import { Footer } from "./components/Footer";
 import { useReveal } from "./components/ui/Reveal";
@@ -53,10 +53,10 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <Eletrons />
-        <Nucleo />
-        <Metodo />
-        <Producao />
+        <OQueE />
+        <Pilares />
+        <Onde />
+        <Arthur />
         <Contato />
       </main>
       <Footer />

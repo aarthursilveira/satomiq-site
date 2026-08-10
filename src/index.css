@@ -100,7 +100,33 @@
       transform: translateY(20px);
     }
   }
+  /* Os sólidos dos pilares boiam. Períodos primos entre si para as três peças
+     nunca voltarem a coincidir — coincidência lê como sincronia mecânica. */
+  .js .flutua {
+    animation: flutua 7s ease-in-out infinite;
+  }
+  .js .flutua-b {
+    animation-duration: 8.5s;
+    animation-delay: -2.4s;
+  }
+  .js .flutua-c {
+    animation-duration: 10s;
+    animation-delay: -5.1s;
+  }
+  @keyframes flutua {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-7px);
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
+    .js .flutua {
+      animation: none;
+    }
     .js .reveal {
       opacity: 1;
       transform: none;

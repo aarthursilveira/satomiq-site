@@ -26,7 +26,7 @@ export function Footer() {
 
         <div className="flex flex-col gap-3 border-t border-linesoft pt-8 font-mono text-[11px] uppercase tracking-[0.12em] text-sea sm:flex-row sm:items-center sm:justify-between">
           <span className="num">
-            © {new Date().getFullYear()} SAtomiq — Arthur Silveira · {RODAPE.eletrons}
+            © {new Date().getFullYear()} SAtomiq — Arthur Silveira · {RODAPE.produtos}
           </span>
           <a
             href={LINKS.instagram}

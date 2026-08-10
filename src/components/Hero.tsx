@@ -5,12 +5,11 @@ import { Reveal } from "./ui/Reveal";
 import { MarcaSAtomiq, MarcaNectarq, MarcaMaarkio } from "./Marks";
 
 /**
- * A dobra abre com a tese em tipo e, logo abaixo, a arquitetura desenhada com
- * as marcas de verdade: núcleo à esquerda, régua, os dois elétrons à direita.
- * É a página inteira explicada numa linha — sem diagrama de átomo, que era
- * justamente o erro do site anterior.
+ * A dobra abre com a definição em tipo e, logo abaixo, a arquitetura desenhada
+ * com as marcas de verdade: núcleo à esquerda, régua, as duas marcas à direita.
+ * É a página explicada numa linha — sem diagrama de átomo, que era justamente
+ * o erro do site anterior.
  */
-
 const ARQUITETURA = [
   { Marca: MarcaNectarq, nome: "Nectarq", papel: "atendimento" },
   { Marca: MarcaMaarkio, nome: "Maarkio", papel: "agendamento" },
@@ -24,50 +23,46 @@ export function Hero() {
           <SectionLabel>{HERO.eyebrow}</SectionLabel>
         </Reveal>
 
-        <h1 className="mt-8 text-balance text-[clamp(2.6rem,8.5vw,6.2rem)] font-semibold leading-[0.95] tracking-[-0.035em] text-paper">
+        <h1 className="mt-8 text-balance text-[clamp(2.5rem,7.5vw,5.6rem)] font-semibold leading-[0.98] tracking-[-0.035em] text-paper">
           {/* A classe vai direto no span: um <div> dentro de <h1> é HTML
-              inválido, e agora o HTML é pré-renderizado e realmente lido. */}
-          <span className="entra block" style={{ "--atraso": "0.06s" } as React.CSSProperties}>
-            {HERO.line1}
-          </span>
-          <span className="entra block" style={{ "--atraso": "0.12s" } as React.CSSProperties}>
-            {HERO.line2}
-          </span>
-          <span
-            className="entra block text-cobre"
-            style={{ "--atraso": "0.18s" } as React.CSSProperties}
-          >
-            {HERO.line3}
-          </span>
+              inválido, e o HTML agora é pré-renderizado e realmente lido. */}
+          {HERO.linhas.map((linha, i) => (
+            <span
+              key={linha}
+              className={`entra block ${i === HERO.linhas.length - 1 ? "text-cobre" : ""}`}
+              style={{ "--atraso": `${0.06 * (i + 1)}s` } as React.CSSProperties}
+            >
+              {linha}
+            </span>
+          ))}
         </h1>
 
-        <Reveal aoCarregar delay={0.26}>
-          <p className="mt-9 max-w-[58ch] text-[clamp(1rem,1.5vw,1.15rem)] leading-relaxed text-mist">
+        <Reveal aoCarregar delay={0.28}>
+          <p className="mt-9 max-w-[60ch] text-[clamp(1rem,1.5vw,1.15rem)] leading-relaxed text-mist">
             {HERO.sub}
           </p>
         </Reveal>
 
-        <Reveal aoCarregar delay={0.32}>
+        <Reveal aoCarregar delay={0.34}>
           <div className="mt-11 flex flex-wrap items-center gap-4">
-            <Button href={LINKS.contato} variant="cobre" icon="whatsapp">
-              Falar com Arthur
+            <Button href="#o-que-e" variant="cobre" icon="arrow">
+              Entender a SAtomiq
             </Button>
-            <Button href="#eletrons" variant="ghost" icon="arrow">
-              Ver os produtos
+            <Button href={LINKS.contato} variant="ghost" icon="whatsapp">
+              Falar com Arthur
             </Button>
           </div>
         </Reveal>
 
-        <Reveal aoCarregar delay={0.38}>
-          <ul className="mt-12 flex flex-wrap gap-x-8 gap-y-2 font-mono text-[11px] uppercase tracking-[0.12em] text-sea">
-            {HERO.meta.map((m) => (
-              <li key={m}>{m}</li>
+        <Reveal aoCarregar delay={0.4}>
+          <ul className="mt-12 flex flex-wrap gap-x-8 gap-y-2 font-mono text-[11px] uppercase tracking-[0.14em] text-sea">
+            {HERO.pilares.map((p) => (
+              <li key={p}>{p}</li>
             ))}
           </ul>
         </Reveal>
 
-        {/* A arquitetura, com as marcas reais */}
-        <Reveal aoCarregar delay={0.46}>
+        <Reveal aoCarregar delay={0.48}>
           <div className="mt-20 border-t border-linesoft pt-8">
             <div className="flex flex-wrap items-center gap-x-8 gap-y-6">
               <div className="flex items-center gap-3.5">
