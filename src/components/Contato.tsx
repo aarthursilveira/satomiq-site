@@ -13,7 +13,7 @@ export function Contato() {
   return (
     <section
       id="contato"
-      className="scroll-mt-24 border-t border-line px-5 py-24 sm:px-8 sm:py-36"
+      className="scroll-mt-24 border-t border-linesoft px-5 py-24 sm:px-8 sm:py-36"
     >
       <div className="mx-auto max-w-[1180px]">
         <Reveal>
@@ -31,7 +31,7 @@ export function Contato() {
               mesma dobra estouram a trava 3 — e, de quebra, dois CTAs de mesmo
               peso não são hierarquia, são indecisão. */}
           {CONTATO.caminhos.map((c, i) => (
-            <RevealItem key={c.t} className="bg-ink">
+            <RevealItem key={c.t} index={i} className="bg-ink">
               <div className="flex h-full flex-col gap-5 p-8 sm:p-10">
                 <h3 className="text-[1.5rem] font-semibold tracking-[-0.02em] text-paper">
                   {c.t}

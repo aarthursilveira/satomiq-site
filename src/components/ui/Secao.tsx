@@ -20,7 +20,7 @@ export function Secao({
   className?: string;
 }) {
   return (
-    <section id={id} className={`scroll-mt-24 border-t border-line px-5 py-24 sm:px-8 sm:py-32 ${className}`}>
+    <section id={id} className={`scroll-mt-24 border-t border-linesoft px-5 py-24 sm:px-8 sm:py-32 ${className}`}>
       <div className="mx-auto grid max-w-[1180px] gap-x-12 gap-y-10 lg:grid-cols-[160px_minmax(0,1fr)]">
         <div className="lg:pt-1.5">
           <SectionLabel tone={tone}>{rotulo}</SectionLabel>

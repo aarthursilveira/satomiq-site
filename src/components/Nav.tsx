@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { LINKS, NAV } from "../lib/content";
 import { Logo } from "./Logo";
 import { Button } from "./ui/Button";
 
-const SPRING = [0.16, 1, 0.3, 1] as const;
-
+/**
+ * Sem framer-motion. O menu fica sempre montado e alterna por CSS — assim ele
+ * também existe no HTML pré-renderizado, em vez de aparecer só depois do JS.
+ */
 export function Nav() {
   const [rolou, setRolou] = useState(false);
   const [aberto, setAberto] = useState(false);
@@ -24,21 +25,26 @@ export function Nav() {
     };
   }, [aberto]);
 
+  // Esc fecha o menu — teclado não pode ficar preso dentro dele.
+  useEffect(() => {
+    if (!aberto) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setAberto(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [aberto]);
+
   return (
     <header className="fixed inset-x-0 top-0 z-50 flex justify-center px-4">
-      <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: SPRING, delay: 0.1 }}
+      <nav
         className={`mt-4 flex w-full max-w-[1180px] items-center justify-between px-5 py-3 transition-all duration-500 ease-spring ${
-          rolou ? "bg-ink/80 ring-1 ring-line/60 backdrop-blur-md" : "bg-transparent"
+          rolou ? "bg-ink/85 ring-1 ring-line backdrop-blur-md" : "bg-transparent"
         }`}
       >
         <a href="#topo" aria-label="SAtomiq — início">
           <Logo />
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-8 md:flex">
           {NAV.map((item) => (
             <a
               key={item.href}
@@ -49,7 +55,7 @@ export function Nav() {
               <span className="absolute -bottom-1.5 left-0 h-px w-0 bg-cobre transition-all duration-500 ease-spring group-hover:w-full" />
             </a>
           ))}
-        </nav>
+        </div>
 
         <div className="hidden md:block">
           <Button href={LINKS.contato} variant="primary" icon="arrow">
@@ -60,6 +66,7 @@ export function Nav() {
         <button
           aria-label={aberto ? "Fechar menu" : "Abrir menu"}
           aria-expanded={aberto}
+          aria-controls="menu-mobile"
           onClick={() => setAberto((v) => !v)}
           className="relative z-50 flex h-10 w-10 items-center justify-center md:hidden"
         >
@@ -76,43 +83,41 @@ export function Nav() {
             />
           </span>
         </button>
-      </motion.nav>
+      </nav>
 
-      <AnimatePresence>
-        {aberto && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4, ease: SPRING }}
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-7 bg-ink/95 backdrop-blur-xl md:hidden"
+      {/* `visibility` (não só opacity) para o menu fechado sair da ordem de
+          tabulação — senão o teclado navega dentro de um painel invisível.
+          Transicionar visibility junto preserva o fade de saída. */}
+      <div
+        id="menu-mobile"
+        aria-hidden={!aberto}
+        className={`fixed inset-0 z-40 flex flex-col items-center justify-center gap-7 bg-ink/95 backdrop-blur-xl transition-[opacity,visibility] duration-500 ease-spring md:hidden ${
+          aberto ? "visible opacity-100" : "invisible opacity-0"
+        }`}
+      >
+        {NAV.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            onClick={() => setAberto(false)}
+            className="text-3xl font-semibold tracking-tight text-paper"
           >
-            {NAV.map((item, i) => (
-              <motion.a
-                key={item.href}
-                href={item.href}
-                onClick={() => setAberto(false)}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.08 + i * 0.06, duration: 0.6, ease: SPRING }}
-                className="text-3xl font-semibold tracking-tight text-paper"
-              >
-                {item.label}
-              </motion.a>
-            ))}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.08 + NAV.length * 0.06, duration: 0.6, ease: SPRING }}
-              className="mt-4"
-            >
-              <Button href={LINKS.contato} variant="primary">
-                Falar com Arthur
-              </Button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {item.label}
+          </a>
+        ))}
+        <a
+          href="#contato"
+          onClick={() => setAberto(false)}
+          className="text-3xl font-semibold tracking-tight text-paper"
+        >
+          Contato
+        </a>
+        <div className="mt-4">
+          <Button href={LINKS.contato} variant="primary">
+            Falar com Arthur
+          </Button>
+        </div>
+      </div>
     </header>
   );
 }

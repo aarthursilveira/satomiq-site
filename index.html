@@ -9,23 +9,67 @@
       name="description"
       content="A SAtomiq constrói a camada de baixo: orquestração de modelos, infraestrutura e operação — com red team antes da primeira linha de código. Em cima dela rodam o Nectarq, o Maarkio e os sistemas sob medida."
     />
+    <link rel="canonical" href="https://satomiq.com/" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/icone-app.svg" />
     <meta name="theme-color" content="#141A1A" />
 
-    <!-- Geist auto-hospedada. Estes dois cortes aparecem na primeira dobra;
-         os outros carregam depois sem atrasar a pintura. -->
+    <!-- Arma a animação de entrada ANTES da pintura. Sem esta linha a página
+         fica visível e estática (que é o padrão de propósito: quem chega sem JS
+         lê tudo). Tem que ser inline: um arquivo externo chegaria tarde. -->
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+
+    <!-- Geist auto-hospedada. Estes dois cortes aparecem na primeira dobra. -->
     <link rel="preload" href="/fonts/Geist-SemiBold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Geist-Regular.woff2" as="font" type="font/woff2" crossorigin />
 
+    <!-- O WhatsApp é o canal de venda: sem og:image o link vai cru. Ele só
+         aceita raster (PNG/JPG/WebP — SVG não), 1200×630, abaixo de 600KB. -->
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://satomiq.com/" />
+    <meta property="og:site_name" content="SAtomiq" />
     <meta property="og:title" content="SAtomiq — o núcleo que os produtos usam" />
     <meta
       property="og:description"
       content="Núcleo de tecnologia e IA aplicada. Nectarq (atendimento no WhatsApp), Maarkio (agendamento) e sistemas sob medida."
     />
+    <meta property="og:image" content="https://satomiq.com/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="SAtomiq — o núcleo que os produtos usam" />
     <meta property="og:locale" content="pt_BR" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "SAtomiq",
+        "url": "https://satomiq.com/",
+        "logo": "https://satomiq.com/icone-app.svg",
+        "image": "https://satomiq.com/og.png",
+        "description": "Núcleo de tecnologia e IA aplicada. Constrói a camada de orquestração de modelos, infraestrutura e operação usada pelos seus produtos e por sistemas sob medida.",
+        "founder": { "@type": "Person", "name": "Arthur Silveira" },
+        "sameAs": ["https://instagram.com/aarthursilveira"],
+        "areaServed": "BR",
+        "knowsLanguage": "pt-BR",
+        "brand": [
+          {
+            "@type": "Brand",
+            "name": "Nectarq",
+            "description": "Atendimento no WhatsApp com compreensão de áudio, texto e imagem, qualificação e passagem para equipe humana."
+          },
+          {
+            "@type": "Brand",
+            "name": "Maarkio",
+            "description": "Agendamento em UI de navegador para qualquer serviço com hora marcada."
+          }
+        ]
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

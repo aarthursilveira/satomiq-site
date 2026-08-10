@@ -32,8 +32,11 @@ function Cartao({ e }: { e: Eletron }) {
   const { Marca } = t;
 
   return (
+    // `relative` + o link esticado embaixo: o cartão inteiro vira alvo, mas
+    // continua sendo UM link só para leitor de tela. Antes o cartão tinha
+    // hover de borda e só o rodapé navegava — afordância mentindo.
     <article
-      className={`flex h-full flex-col gap-7 border border-line bg-surface p-7 transition-colors duration-500 ease-spring sm:p-9 ${t.borda}`}
+      className={`relative flex h-full flex-col gap-7 border border-line bg-surface p-7 transition-colors duration-500 ease-spring focus-within:border-sea sm:p-9 ${t.borda}`}
     >
       <header className="flex flex-col gap-5">
         <div className="flex items-start justify-between gap-4">
@@ -61,7 +64,7 @@ function Cartao({ e }: { e: Eletron }) {
       </p>
       <p className="leading-relaxed text-mist">{e.corpo}</p>
 
-      <ul className="flex flex-col gap-2.5 border-t border-line pt-6 text-[0.94rem] text-mist">
+      <ul className="flex flex-col gap-2.5 border-t border-linesoft pt-6 text-[0.94rem] text-mist">
         {e.capacidades.map((c) => (
           <li key={c} className="flex gap-3">
             <span className={`mt-2.5 h-px w-3 shrink-0 ${t.ponto} opacity-70`} aria-hidden />
@@ -71,7 +74,7 @@ function Cartao({ e }: { e: Eletron }) {
       </ul>
 
       {e.nota && (
-        <p className="border-l-2 border-line pl-5 text-[0.9rem] leading-relaxed text-sea">
+        <p className="border-l-2 border-linesoft pl-5 text-[0.9rem] leading-relaxed text-sea">
           {e.nota}
         </p>
       )}
@@ -80,7 +83,7 @@ function Cartao({ e }: { e: Eletron }) {
         href={e.cta.href}
         target="_blank"
         rel="noopener noreferrer"
-        className={`group mt-auto inline-flex items-center gap-2.5 pt-2 font-mono text-[11px] uppercase tracking-[0.14em] ${t.texto}`}
+        className={`group mt-auto inline-flex items-center gap-2.5 pt-2 font-mono text-[11px] uppercase tracking-[0.14em] after:absolute after:inset-0 after:content-[''] ${t.texto}`}
       >
         {e.cta.label}
         <ArrowUpRight
@@ -103,8 +106,8 @@ export function Eletrons() {
       </Reveal>
 
       <RevealGroup className="mt-14 grid gap-6 md:grid-cols-2">
-        {ELETRONS.map((e) => (
-          <RevealItem key={e.slug} className="h-full">
+        {ELETRONS.map((e, i) => (
+          <RevealItem key={e.slug} index={i} className="h-full">
             <Cartao e={e} />
           </RevealItem>
         ))}

@@ -3,7 +3,7 @@ import { Logo } from "./Logo";
 
 export function Footer() {
   return (
-    <footer className="border-t border-line bg-surface">
+    <footer className="border-t border-linesoft bg-surface">
       <div className="mx-auto flex max-w-[1180px] flex-col gap-10 px-5 py-14 sm:px-8">
         <div className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex flex-col gap-3">
@@ -24,7 +24,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-line pt-8 font-mono text-[11px] uppercase tracking-[0.12em] text-sea sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-3 border-t border-linesoft pt-8 font-mono text-[11px] uppercase tracking-[0.12em] text-sea sm:flex-row sm:items-center sm:justify-between">
           <span className="num">
             © {new Date().getFullYear()} SAtomiq — Arthur Silveira · {RODAPE.eletrons}
           </span>

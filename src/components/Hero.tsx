@@ -1,16 +1,8 @@
-import { motion } from "framer-motion";
 import { HERO, LINKS } from "../lib/content";
 import { Button } from "./ui/Button";
 import { SectionLabel } from "./ui/SectionLabel";
+import { Reveal } from "./ui/Reveal";
 import { MarcaSAtomiq, MarcaNectarq, MarcaMaarkio } from "./Marks";
-
-const SPRING = [0.16, 1, 0.3, 1] as const;
-
-const linha = (i: number) => ({
-  initial: { opacity: 0, y: 28, filter: "blur(8px)" },
-  animate: { opacity: 1, y: 0, filter: "blur(0px)" },
-  transition: { duration: 0.9, delay: 0.15 + i * 0.09, ease: SPRING },
-});
 
 /**
  * A dobra abre com a tese em tipo e, logo abaixo, a arquitetura desenhada com
@@ -18,93 +10,94 @@ const linha = (i: number) => ({
  * É a página inteira explicada numa linha — sem diagrama de átomo, que era
  * justamente o erro do site anterior.
  */
+
+const ARQUITETURA = [
+  { Marca: MarcaNectarq, nome: "Nectarq", papel: "atendimento" },
+  { Marca: MarcaMaarkio, nome: "Maarkio", papel: "agendamento" },
+];
+
 export function Hero() {
   return (
     <section id="topo" className="relative px-5 pb-24 pt-40 sm:px-8 sm:pt-48">
       <div className="mx-auto max-w-[1180px]">
-        <motion.div {...linha(0)}>
+        <Reveal aoCarregar>
           <SectionLabel>{HERO.eyebrow}</SectionLabel>
-        </motion.div>
+        </Reveal>
 
         <h1 className="mt-8 text-balance text-[clamp(2.6rem,8.5vw,6.2rem)] font-semibold leading-[0.95] tracking-[-0.035em] text-paper">
-          <motion.span className="block" {...linha(1)}>
+          {/* A classe vai direto no span: um <div> dentro de <h1> é HTML
+              inválido, e agora o HTML é pré-renderizado e realmente lido. */}
+          <span className="entra block" style={{ "--atraso": "0.06s" } as React.CSSProperties}>
             {HERO.line1}
-          </motion.span>
-          <motion.span className="block" {...linha(2)}>
+          </span>
+          <span className="entra block" style={{ "--atraso": "0.12s" } as React.CSSProperties}>
             {HERO.line2}
-          </motion.span>
-          <motion.span className="block text-cobre" {...linha(3)}>
+          </span>
+          <span
+            className="entra block text-cobre"
+            style={{ "--atraso": "0.18s" } as React.CSSProperties}
+          >
             {HERO.line3}
-          </motion.span>
+          </span>
         </h1>
 
-        <motion.p
-          className="mt-9 max-w-[58ch] text-[clamp(1rem,1.5vw,1.15rem)] leading-relaxed text-mist"
-          {...linha(4)}
-        >
-          {HERO.sub}
-        </motion.p>
+        <Reveal aoCarregar delay={0.26}>
+          <p className="mt-9 max-w-[58ch] text-[clamp(1rem,1.5vw,1.15rem)] leading-relaxed text-mist">
+            {HERO.sub}
+          </p>
+        </Reveal>
 
-        <motion.div className="mt-11 flex flex-wrap items-center gap-4" {...linha(5)}>
-          <Button href={LINKS.contato} variant="cobre" icon="whatsapp">
-            Falar com Arthur
-          </Button>
-          <Button href="#eletrons" variant="ghost" icon="arrow">
-            Ver os produtos
-          </Button>
-        </motion.div>
+        <Reveal aoCarregar delay={0.32}>
+          <div className="mt-11 flex flex-wrap items-center gap-4">
+            <Button href={LINKS.contato} variant="cobre" icon="whatsapp">
+              Falar com Arthur
+            </Button>
+            <Button href="#eletrons" variant="ghost" icon="arrow">
+              Ver os produtos
+            </Button>
+          </div>
+        </Reveal>
 
-        <motion.ul
-          className="mt-12 flex flex-wrap gap-x-8 gap-y-2 font-mono text-[11px] uppercase tracking-[0.12em] text-sea"
-          {...linha(6)}
-        >
-          {HERO.meta.map((m) => (
-            <li key={m}>{m}</li>
-          ))}
-        </motion.ul>
+        <Reveal aoCarregar delay={0.38}>
+          <ul className="mt-12 flex flex-wrap gap-x-8 gap-y-2 font-mono text-[11px] uppercase tracking-[0.12em] text-sea">
+            {HERO.meta.map((m) => (
+              <li key={m}>{m}</li>
+            ))}
+          </ul>
+        </Reveal>
 
         {/* A arquitetura, com as marcas reais */}
-        <motion.div
-          className="mt-20 border-t border-line pt-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.9, ease: SPRING }}
-        >
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-6">
-            <div className="flex items-center gap-3.5">
-              <MarcaSAtomiq familia className="h-9 w-9 text-paper" />
-              <div className="leading-tight">
-                <p className="text-[15px] font-semibold tracking-tight text-paper">SAtomiq</p>
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-sea">
-                  núcleo
-                </p>
-              </div>
-            </div>
-
-            <div className="hidden h-px flex-1 bg-line sm:block" />
-
+        <Reveal aoCarregar delay={0.46}>
+          <div className="mt-20 border-t border-linesoft pt-8">
             <div className="flex flex-wrap items-center gap-x-8 gap-y-6">
               <div className="flex items-center gap-3.5">
-                <MarcaNectarq familia className="h-9 w-9 text-paper" />
+                <MarcaSAtomiq familia className="h-9 w-9 text-paper" />
                 <div className="leading-tight">
-                  <p className="text-[15px] font-semibold tracking-tight text-paper">Nectarq</p>
+                  <p className="text-[15px] font-semibold tracking-tight text-paper">SAtomiq</p>
                   <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-sea">
-                    atendimento
+                    núcleo
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-3.5">
-                <MarcaMaarkio familia className="h-9 w-9 text-paper" />
-                <div className="leading-tight">
-                  <p className="text-[15px] font-semibold tracking-tight text-paper">Maarkio</p>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-sea">
-                    agendamento
-                  </p>
-                </div>
+
+              <div className="hidden h-px flex-1 bg-linesoft sm:block" />
+
+              <div className="flex flex-wrap items-center gap-x-8 gap-y-6">
+                {ARQUITETURA.map(({ Marca, nome, papel }) => (
+                  <div key={nome} className="flex items-center gap-3.5">
+                    <Marca familia className="h-9 w-9 text-paper" />
+                    <div className="leading-tight">
+                      <p className="text-[15px] font-semibold tracking-tight text-paper">{nome}</p>
+                      <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-sea">
+                        {papel}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

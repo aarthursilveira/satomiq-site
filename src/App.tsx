@@ -8,8 +8,11 @@ import { Metodo } from "./components/Metodo";
 import { Producao } from "./components/Producao";
 import { Contato } from "./components/Contato";
 import { Footer } from "./components/Footer";
+import { useReveal } from "./components/ui/Reveal";
 
 export default function App() {
+  useReveal();
+
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 

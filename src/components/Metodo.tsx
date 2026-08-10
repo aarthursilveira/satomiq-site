@@ -9,7 +9,7 @@ import { SectionLabel } from "./ui/SectionLabel";
  */
 export function Metodo() {
   return (
-    <section id="metodo" className="scroll-mt-24 border-t border-line bg-surface px-5 py-24 sm:px-8 sm:py-36">
+    <section id="metodo" className="scroll-mt-24 border-t border-linesoft bg-surface px-5 py-24 sm:px-8 sm:py-36">
       <div className="mx-auto flex max-w-[1180px] flex-col gap-20 sm:gap-28">
         {METODO.map((ato, i) => (
           <Reveal key={ato.eyebrow} delay={i * 0.04}>

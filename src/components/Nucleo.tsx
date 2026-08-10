@@ -13,9 +13,11 @@ export function Nucleo() {
       </Reveal>
 
       <RevealGroup className="mt-14 grid gap-px border border-line bg-line sm:grid-cols-2">
-        {NUCLEO.map((c) => (
-          <RevealItem key={c.n} className="bg-ink">
-            <div className="flex h-full flex-col gap-4 p-7 transition-colors duration-500 ease-spring hover:bg-surface sm:p-9">
+        {NUCLEO.map((c, i) => (
+          <RevealItem key={c.n} index={i} className="bg-ink">
+            {/* Sem hover: o cartão não é clicável, e o estado que existia
+                media 1,11:1 contra o fundo — ninguém enxergava mesmo. */}
+            <div className="flex h-full flex-col gap-4 p-7 sm:p-9">
               <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-cobre">
                 {c.n}
               </span>

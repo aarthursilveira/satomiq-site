@@ -10,7 +10,11 @@ export default {
         ink: "#141A1A", // fundo
         surface: "#1C2424", // cartão, 1ª elevação
         raised: "#26302F", // 2ª elevação, hover
-        line: "#36585A", // régua e borda
+        // Borda que DEFINE um componente precisa de 3:1 (WCAG 1.4.11).
+        // O #36585A antigo dava 2,26:1 sobre ink e 2,03:1 sobre surface — nunca
+        // tinha sido medido, porque a rodada 02 só mediu cor de texto.
+        line: "#4A797C", // borda estrutural · 3,62:1 ink · 3,25:1 surface
+        linesoft: "#36585A", // régua decorativa (separa, não delimita)
         sea: "#7FA0A2", // rótulo, metadado · 6,25:1
         mist: "#B4C2C5", // texto secundário · 9,61:1
         paper: "#DDE5E7", // texto principal · 13,78:1

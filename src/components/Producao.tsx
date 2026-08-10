@@ -62,7 +62,7 @@ export function Producao() {
               ))}
             </ul>
 
-            <div className="mt-9 flex flex-wrap gap-2 border-t border-line pt-7">
+            <div className="mt-9 flex flex-wrap gap-2 border-t border-linesoft pt-7">
               {PRODUCAO.stack.map((s) => (
                 <span
                   key={s}

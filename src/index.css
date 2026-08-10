@@ -71,6 +71,45 @@
   .text-balance {
     text-wrap: balance;
   }
+  /* Entrada por scroll. O padrão é VISÍVEL: sem JS — ou se o observer nunca
+     disparar — a página continua legível. A classe `js` no <html> é que arma. */
+  .reveal {
+    opacity: 1;
+  }
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition:
+      opacity 0.8s var(--ease-spring) var(--atraso, 0s),
+      transform 0.8s var(--ease-spring) var(--atraso, 0s);
+  }
+  .js .reveal.vis {
+    opacity: 1;
+    transform: none;
+  }
+  /* Entrada de CARREGAMENTO — para o que já está na primeira dobra. Roda só
+     com CSS, sem esperar o bundle baixar e hidratar: se a dobra dependesse do
+     IntersectionObserver, o <h1> ficaria invisível até o JS chegar e o LCP
+     seria pior do que antes da otimização. */
+  .js .entra {
+    animation: entra 0.7s var(--ease-spring) var(--atraso, 0s) both;
+  }
+  @keyframes entra {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .js .entra {
+      animation: none;
+    }
+  }
   .ease-spring {
     transition-timing-function: var(--ease-spring);
   }
