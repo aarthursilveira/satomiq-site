@@ -8,7 +8,7 @@ export function Logo({ className = "h-[26px]" }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 219.7 38.3"
-      className={`${className} w-auto text-paper`}
+      className={`${className} w-auto text-texto`}
       role="img"
       aria-label="SAtomiq"
     >

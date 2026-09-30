@@ -1,0 +1,291 @@
+{
+  "geradoEm": "2026-09-30",
+  "desde": "2026-04-01",
+  "total": 370,
+  "porRepo": {
+    "maarkio": 86,
+    "sih": 1,
+    "cockpit": 2,
+    "gluten": 55,
+    "nectarq": 188,
+    "este site": 5,
+    "outreach": 33
+  },
+  "porDia": {
+    "2026-09-25": 4,
+    "2026-09-24": 1,
+    "2026-09-17": 6,
+    "2026-09-11": 3,
+    "2026-09-09": 8,
+    "2026-09-05": 4,
+    "2026-09-04": 2,
+    "2026-09-03": 2,
+    "2026-09-01": 6,
+    "2026-08-31": 4,
+    "2026-08-20": 11,
+    "2026-08-19": 5,
+    "2026-08-15": 3,
+    "2026-08-14": 7,
+    "2026-08-13": 4,
+    "2026-08-12": 6,
+    "2026-08-11": 5,
+    "2026-08-10": 4,
+    "2026-08-09": 6,
+    "2026-08-08": 21,
+    "2026-08-07": 5,
+    "2026-08-03": 1,
+    "2026-08-02": 8,
+    "2026-08-01": 4,
+    "2026-07-31": 2,
+    "2026-07-30": 4,
+    "2026-07-27": 12,
+    "2026-07-26": 9,
+    "2026-07-24": 8,
+    "2026-07-18": 2,
+    "2026-07-17": 4,
+    "2026-07-16": 5,
+    "2026-07-14": 3,
+    "2026-07-13": 9,
+    "2026-07-12": 10,
+    "2026-07-11": 10,
+    "2026-07-08": 3,
+    "2026-07-07": 4,
+    "2026-07-06": 8,
+    "2026-07-05": 15,
+    "2026-06-28": 3,
+    "2026-06-27": 2,
+    "2026-06-26": 2,
+    "2026-06-25": 1,
+    "2026-06-24": 3,
+    "2026-06-23": 2,
+    "2026-06-22": 2,
+    "2026-06-12": 4,
+    "2026-06-11": 11,
+    "2026-06-03": 2,
+    "2026-06-02": 5,
+    "2026-05-31": 1,
+    "2026-05-28": 2,
+    "2026-05-27": 3,
+    "2026-05-26": 4,
+    "2026-05-25": 5,
+    "2026-05-24": 5,
+    "2026-05-23": 12,
+    "2026-05-21": 1,
+    "2026-05-20": 10,
+    "2026-05-19": 3,
+    "2026-05-16": 1,
+    "2026-05-15": 3,
+    "2026-05-14": 1,
+    "2026-05-13": 2,
+    "2026-05-12": 5,
+    "2026-05-08": 12,
+    "2026-05-07": 3,
+    "2026-05-05": 5,
+    "2026-05-04": 1,
+    "2026-05-03": 11,
+    "2026-05-02": 4,
+    "2026-05-01": 1
+  },
+  "recentes": [
+    {
+      "repo": "maarkio",
+      "data": "2026-09-25",
+      "msg": "feat(observability): alerta no Telegram quando a mensagem ao cliente não sai"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-25",
+      "msg": "docs(observability): registra o alerta de falha de envio e a contagem de testes"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-25",
+      "msg": "fix(jobs): teto de 15s no envio de WhatsApp e Telegram, sem cobrança em dobro"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-25",
+      "msg": "docs(jobs): registra o teto de envio, o desfecho incerto e a contagem de testes"
+    },
+    {
+      "repo": "cockpit",
+      "data": "2026-09-17",
+      "msg": "Estado inicial do AI Cockpit antes do redesign mobile"
+    },
+    {
+      "repo": "cockpit",
+      "data": "2026-09-17",
+      "msg": "Mobile: terminal xterm.js de verdade, resize real e UI de tela cheia"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-17",
+      "msg": "feat(widget): agrupa e filtra servicos por categoria, extraido e testado"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-17",
+      "msg": "feat(widget): componente de chips de categoria, com testes de renderizacao"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-17",
+      "msg": "feat(widget): chips de filtro no passo de servico, filtro sobrevive ao voltar"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-17",
+      "msg": "docs(widget): atualiza contagem de testes e tamanho do bundle"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-11",
+      "msg": "docs(deploy): o container da migração é o da api, não o do painel"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-11",
+      "msg": "fix(gate): set -o pipefail, senão o tee devolve zero com o gate reprovado"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-11",
+      "msg": "fix(painel): estouros de largura no celular, e teste que pega classe morta"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-09",
+      "msg": "fix(rls): reserva o namespace da instância de WhatsApp da plataforma"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-09",
+      "msg": "feat(platform): WhatsApp do dono no painel da plataforma"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-09",
+      "msg": "feat(platform): balanço mensal e o segundo sinal de churn"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-09",
+      "msg": "feat(platform): régua de cobrança por cliente, em centavos inteiros"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-09",
+      "msg": "feat(jobs): relatório semanal e cobrança mensal por cron, com prévia"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-09",
+      "msg": "fix(rls): o nome da instância do dono é livre, e protegido por um par"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-09",
+      "msg": "docs(deploy): a ordem do WhatsApp da plataforma é deploy, depois migração"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-09",
+      "msg": "fix(rls): tira do painel do barbeiro tudo que era do painel de admin"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-05",
+      "msg": "fix(recorrencia): dois 500 viravam alerta falso, e a edição não tinha tela"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-05",
+      "msg": "fix(recorrencia): o job diário perdia trabalho em silêncio; e a ordem dos locks"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-05",
+      "msg": "docs(deploy): o host do banco no runbook era o nome do container, não do serviço"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-05",
+      "msg": "docs(deploy): num serviço compose único a migração não pode vir antes"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-04",
+      "msg": "feat(recorrencia): o cliente fixo — regra, projeção e horizonte rolante"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-03",
+      "msg": "feat(painel): conectar o WhatsApp pelo painel, com QR de pareamento"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-09-03",
+      "msg": "test(rls): isolamento por rota — a pergunta que o cliente pagante faz"
+    },
+    {
+      "repo": "gluten",
+      "data": "2026-09-01",
+      "msg": "feat(loja): placeholder de marca, dados do cliente, QR do PIX e troco por nota"
+    },
+    {
+      "repo": "gluten",
+      "data": "2026-09-01",
+      "msg": "feat(painel): importar cardápio por CSV, automações do pedido, pedido no balcão e \"esgotado\""
+    },
+    {
+      "repo": "gluten",
+      "data": "2026-09-01",
+      "msg": "fix(bff): campos que o Zod descartava em silêncio (foto, pagamento, esgotado)"
+    },
+    {
+      "repo": "gluten",
+      "data": "2026-09-01",
+      "msg": "fix(storefront): foto do produto visível na linha compacta"
+    },
+    {
+      "repo": "gluten",
+      "data": "2026-09-01",
+      "msg": "fix(storefront): a barra do carrinho cobria o botão \"Adicionar\" do produto"
+    },
+    {
+      "repo": "gluten",
+      "data": "2026-08-31",
+      "msg": "feat: pagamento por PIX, migrations versionadas e provisionamento de cliente"
+    },
+    {
+      "repo": "gluten",
+      "data": "2026-08-31",
+      "msg": "feat(db): importador de cardápio por CSV, idempotente e com dry-run padrão"
+    },
+    {
+      "repo": "gluten",
+      "data": "2026-08-31",
+      "msg": "feat(admin): comanda térmica imprimível em 58mm e 80mm"
+    },
+    {
+      "repo": "gluten",
+      "data": "2026-08-31",
+      "msg": "fix: achados do adversário no importador de CSV e na verificação da comanda"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-08-20",
+      "msg": "docs(gate): saída de falha nunca passa por tail ou head"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-08-20",
+      "msg": "feat(rls): GUC próprio de plataforma — ausência de contexto deixa de autorizar"
+    },
+    {
+      "repo": "maarkio",
+      "data": "2026-08-20",
+      "msg": "test(gate): o gate reprova quando a suíte encolhe ou pula teste"
+    }
+  ]
+}

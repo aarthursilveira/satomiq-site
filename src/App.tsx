@@ -2,10 +2,10 @@ import { useEffect } from "react";
 import Lenis from "lenis";
 import { Nav } from "./components/Nav";
 import { Hero } from "./components/Hero";
-import { OQueE } from "./components/OQueE";
-import { Pilares } from "./components/Pilares";
-import { Onde } from "./components/Onde";
-import { Arthur } from "./components/Arthur";
+import { Rodando } from "./components/Rodando";
+import { Lab } from "./components/Lab";
+import { Diario } from "./components/Diario";
+import { Processo } from "./components/Processo";
 import { Contato } from "./components/Contato";
 import { Footer } from "./components/Footer";
 import { useReveal } from "./components/ui/Reveal";
@@ -35,7 +35,7 @@ export default function App() {
       const el = document.querySelector(id);
       if (el) {
         e.preventDefault();
-        lenis.scrollTo(el as HTMLElement, { offset: -80 });
+        lenis.scrollTo(el as HTMLElement, { offset: id === "#topo" ? 0 : -80 });
       }
     };
     document.addEventListener("click", onClick);
@@ -49,19 +49,18 @@ export default function App() {
 
   return (
     <div className="relative">
-      <div className="grain" aria-hidden />
-      {/* WCAG 2.4.1: a barra fixa põe cinco links na frente do conteúdo em
-          toda visita. Quem navega por teclado precisa de uma saída. */}
+      <div className="grao" aria-hidden />
+      <div className="vinheta" aria-hidden />
       <a href="#conteudo" className="pular">
         Pular para o conteúdo
       </a>
       <Nav />
       <main id="conteudo">
         <Hero />
-        <OQueE />
-        <Pilares />
-        <Onde />
-        <Arthur />
+        <Rodando />
+        <Lab />
+        <Diario />
+        <Processo />
         <Contato />
       </main>
       <Footer />

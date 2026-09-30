@@ -1,62 +1,48 @@
 /** @type {import('tailwindcss').Config} */
-// Tokens espelhados de Documents/satomiq-brand/tokens.css.
-// A marca é dark-first: o escuro é o padrão, não um "modo".
+// Tokens espelhados de Documents/arthursilveira-ai/remotion/src/theme.ts —
+// a marca do perfil profissional. Nenhum hex fora daqui (e do index.css, que
+// repete os mesmos valores em variável CSS pro que o Tailwind não alcança).
 export default {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        // espinha estrutural — compartilhada pela família
-        ink: "#141A1A", // fundo
-        surface: "#1C2424", // cartão, 1ª elevação
-        raised: "#26302F", // 2ª elevação, hover
-        // Borda que DEFINE um componente precisa de 3:1 (WCAG 1.4.11).
-        // O #36585A antigo dava 2,26:1 sobre ink e 2,03:1 sobre surface — nunca
-        // tinha sido medido, porque a rodada 02 só mediu cor de texto.
-        line: "#4A797C", // borda estrutural · 3,62:1 ink · 3,25:1 surface
-        linesoft: "#36585A", // régua decorativa (separa, não delimita)
-        sea: "#7FA0A2", // rótulo, metadado · 6,25:1
-        mist: "#B4C2C5", // texto secundário · 9,61:1
-        paper: "#DDE5E7", // texto principal · 13,78:1
-
-        // acentos — um por marca, NUNCA misturados na mesma dobra
-        cobre: "#BC784B", // SAtomiq, institucional · 4,97:1
-        latao: "#D9A43D", // Maarkio · 7,82:1
-        aco: "#5E8ECC", // Nectarq · 5,21:1
-
-        ok: "#6FA986",
-        warn: "#C9A24B",
-        bad: "#C9635B",
+        bg: "#0B0907", // preto quente, nunca #000
+        panel: "#1A1512",
+        terminal: "#120F0C",
+        border: "#2A231C",
+        latao: "#A78D51", // acento: a palavra-herói, o que importa
+        tijolo: "#B0553C", // fricção, erro, o que dói
+        oliva: "#8A9147", // sucesso
+        azul: "#6E8FA8", // sistema, meta, link
+        texto: "#FFFFFF",
+        creme: "#D9CFB8", // conector, apoio
+        dim: "#8E8371", // apagado · 5,2:1 sobre bg
+        ghost: "#3E362C", // ilegível DE PROPÓSITO
       },
       fontFamily: {
-        sans: ['"Geist"', "system-ui", "sans-serif"],
-        mono: ['"Geist Mono"', "ui-monospace", "monospace"],
+        // Roboto Flex: a palavra-herói. Largura e peso são o argumento.
+        flex: ['"Roboto Flex"', '"Arial Narrow"', "system-ui", "sans-serif"],
+        // Recursive: um arquivo, dois papéis. MONO 0 é o corpo, MONO 1 é a máquina.
+        sans: ['"Recursive"', "system-ui", "sans-serif"],
+        mono: ['"Recursive"', "ui-monospace", "Consolas", "monospace"],
+        // Recursive CASL 1: o Arthur falando.
+        gente: ['"Recursive Casual"', "system-ui", "sans-serif"],
+        // Instrument Serif itálico: o humano, o nome, a pausa.
+        serif: ['"Instrument Serif"', "Georgia", "serif"],
       },
-      // Uma escala só. Antes eram treze tamanhos avulsos escritos direto na
-      // classe — 1,6 e 1,75rem para o mesmo h3, 0,9 / 0,94 / 1 / 1,05 para o
-      // mesmo parágrafo. Diferença que ninguém lê como intenção, só como ruído.
-      // Razão ~1,35 entre os três níveis de manchete.
       fontSize: {
-        display: ["clamp(2.5rem,7.5vw,5.6rem)", { lineHeight: "0.98", letterSpacing: "-0.035em" }],
-        fecho: ["clamp(2.2rem,5.6vw,4.2rem)", { lineHeight: "1.0", letterSpacing: "-0.035em" }],
-        secao: ["clamp(1.9rem,4.2vw,3.1rem)", { lineHeight: "1.05", letterSpacing: "-0.03em" }],
-        citacao: ["clamp(1.25rem,2.4vw,1.7rem)", { lineHeight: "1.35", letterSpacing: "-0.02em" }],
-        cartao: ["1.7rem", { lineHeight: "1.15", letterSpacing: "-0.025em" }],
-        tese: ["1.15rem", { lineHeight: "1.4", letterSpacing: "-0.01em" }],
+        rotulo: ["12px", { lineHeight: "1.5" }],
+        miudo: ["0.9rem", { lineHeight: "1.6" }],
         corpo: ["1.05rem", { lineHeight: "1.7" }],
-        miudo: ["0.94rem", { lineHeight: "1.65" }],
-        rotulo: ["11px", { lineHeight: "1.5" }],
-        botao: ["12px", { lineHeight: "1" }],
+        conector: ["clamp(1.15rem,2.2vw,1.6rem)", { lineHeight: "1.3" }],
+        titulo: ["clamp(3.2rem,11vw,9rem)", { lineHeight: "0.86", letterSpacing: "-0.03em" }],
       },
       letterSpacing: {
         eyebrow: "0.14em",
-        botao: "0.12em",
       },
-      keyframes: {
-        blink: { "0%,100%": { opacity: "1" }, "50%": { opacity: "0" } },
-      },
-      animation: {
-        blink: "blink 1.1s step-end infinite",
+      maxWidth: {
+        pagina: "1240px",
       },
     },
   },

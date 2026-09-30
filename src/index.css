@@ -1,38 +1,30 @@
-/* Geist auto-hospedada (OFL). Sem CDN: a fonte é do sistema de marca e não pode
-   depender de terceiro no ar. Os logotipos já vêm em curvas, mas o texto não. */
+/* Fontes auto-hospedadas, só o subconjunto latino (cobre o pt-BR inteiro).
+   Cada arquivo carrega só os eixos que usamos: baixar a Roboto Flex "full"
+   seriam 326 KB pra usar dois eixos de doze. */
 @font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-Regular.woff2") format("woff2");
+  font-family: "Roboto Flex";
+  src: url("/fonts/RobotoFlex-wght-wdth.woff2") format("woff2-variations");
+  font-weight: 100 1000;
+  font-stretch: 25% 151%;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Recursive";
+  src: url("/fonts/Recursive-wght-MONO.woff2") format("woff2-variations");
+  font-weight: 300 1000;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Recursive Casual";
+  src: url("/fonts/Recursive-wght-CASL.woff2") format("woff2-variations");
+  font-weight: 300 1000;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("/fonts/InstrumentSerif-Italic.woff2") format("woff2");
   font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Geist";
-  src: url("/fonts/Geist-SemiBold.woff2") format("woff2");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Geist Mono";
-  src: url("/fonts/GeistMono-Regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Geist Mono";
-  src: url("/fonts/GeistMono-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
+  font-style: italic;
   font-display: swap;
 }
 
@@ -42,140 +34,195 @@
 
 @layer base {
   :root {
-    --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+    --bg: #0b0907;
+    --panel: #1a1512;
+    --terminal: #120f0c;
+    --border: #2a231c;
+    --latao: #a78d51;
+    --tijolo: #b0553c;
+    --oliva: #8a9147;
+    --azul: #6e8fa8;
+    --texto: #ffffff;
+    --creme: #d9cfb8;
+    --dim: #8e8371;
+    --ghost: #3e362c;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+    --mola: cubic-bezier(0.2, 0.9, 0.3, 1.3);
     color-scheme: dark;
   }
 
   html {
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
-    background: #141a1a; /* evita flash claro antes do CSS do body */
+    background: var(--bg);
   }
 
   body {
-    @apply bg-ink font-sans text-mist antialiased;
+    @apply bg-bg font-sans text-creme antialiased;
     overflow-x: hidden;
   }
 
   ::selection {
-    @apply bg-cobre/25 text-paper;
+    background: rgb(167 141 81 / 0.3);
+    color: var(--texto);
   }
 
   :focus-visible {
-    outline: 2px solid #bc784b;
+    outline: 2px solid var(--latao);
     outline-offset: 3px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
   }
 }
 
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  /* O eixo MONO da Recursive é o que separa corpo de máquina. */
+  .font-mono {
+    font-variation-settings: "MONO" 1;
   }
-  /* Entrada por scroll. O padrão é VISÍVEL: sem JS — ou se o observer nunca
-     disparar — a página continua legível. A classe `js` no <html> é que arma. */
-  .reveal {
-    opacity: 1;
-  }
-  .js .reveal {
-    opacity: 0;
-    transform: translateY(22px);
-    transition:
-      opacity 0.8s var(--ease-spring) var(--atraso, 0s),
-      transform 0.8s var(--ease-spring) var(--atraso, 0s);
-  }
-  .js .reveal.vis {
-    opacity: 1;
-    transform: none;
-  }
-  /* Entrada de CARREGAMENTO — para o que já está na primeira dobra. Roda só
-     com CSS, sem esperar o bundle baixar e hidratar: se a dobra dependesse do
-     IntersectionObserver, o <h1> ficaria invisível até o JS chegar e o LCP
-     seria pior do que antes da otimização. */
-  .js .entra {
-    animation: entra 0.7s var(--ease-spring) var(--atraso, 0s) both;
-  }
-  @keyframes entra {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-  }
-  /* Os sólidos dos pilares boiam. Períodos primos entre si para as três peças
-     nunca voltarem a coincidir — coincidência lê como sincronia mecânica. */
-  .js .flutua {
-    animation: flutua 7s ease-in-out infinite;
-  }
-  .js .flutua-b {
-    animation-duration: 8.5s;
-    animation-delay: -2.4s;
-  }
-  .js .flutua-c {
-    animation-duration: 10s;
-    animation-delay: -5.1s;
-  }
-  @keyframes flutua {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-7px);
-    }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .js .flutua {
-      animation: none;
-    }
-    .js .reveal {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-    .js .entra {
-      animation: none;
-    }
-  }
-  .ease-spring {
-    transition-timing-function: var(--ease-spring);
+  .font-gente {
+    font-variation-settings: "CASL" 1;
   }
   .num {
     font-variant-numeric: tabular-nums;
   }
-  /* Fora da tela até receber foco. Não é `display:none` nem `visibility`: os
-     dois tirariam o link do foco, que é justamente para o que ele serve. */
-  .pular {
-    position: fixed;
-    top: 0.75rem;
-    left: 0.75rem;
-    z-index: 70;
-    transform: translateY(-160%);
-    @apply bg-cobre px-5 py-3 font-mono text-botao font-medium uppercase tracking-botao text-ink;
-    transition: transform 0.25s var(--ease-spring);
-  }
-  .pular:focus-visible {
-    transform: translateY(0);
-  }
-
-  /* O losango virou a marca da casa. Como bullet ele competiria com ela em toda
-     seção — o rótulo agora abre com uma régua curta, que não tem dono. */
-  .tick {
-    display: inline-block;
-    width: 18px;
-    height: 1px;
-    background: currentColor;
-    opacity: 0.6;
+  .eyebrow {
+    @apply font-mono text-rotulo uppercase tracking-eyebrow text-dim;
   }
 }
 
-/* Grão fixo. Camada fixed, nunca dentro de container que rola. */
-.grain {
+@layer components {
+  /* ── título de seção: Roboto Flex, peso e largura por variável ───────── */
+  .heroi {
+    font-family: "Roboto Flex", "Arial Narrow", sans-serif;
+    font-weight: var(--w, 900);
+    font-stretch: var(--l, 100%);
+    font-variation-settings: "opsz" 144;
+    color: var(--texto);
+    line-height: 0.86;
+    letter-spacing: -0.03em;
+  }
+
+  /* ── botões ───────────────────────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center gap-3 rounded-full px-6 py-4 font-mono text-rotulo uppercase tracking-eyebrow;
+    transition:
+      transform 0.35s var(--mola),
+      background-color 0.25s,
+      color 0.25s;
+  }
+  .btn-cheio {
+    @apply btn bg-latao text-bg;
+  }
+  .btn-cheio:hover {
+    background: var(--creme);
+  }
+  .btn-vazio {
+    @apply btn text-creme ring-1 ring-inset ring-border;
+  }
+  .btn-vazio:hover {
+    @apply text-texto ring-latao;
+  }
+
+  /* ── cartão ───────────────────────────────────────────────────────── */
+  .cartao {
+    @apply rounded-2xl bg-panel ring-1 ring-inset ring-border;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 font-mono text-[11px] text-dim ring-1 ring-inset ring-border;
+  }
+
+  .ponto-vivo {
+    @apply relative inline-block h-2 w-2 rounded-full bg-oliva;
+  }
+  .ponto-vivo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: inherit;
+    animation: pulso 2s var(--ease) infinite;
+  }
+  @keyframes pulso {
+    to {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+}
+
+/* ── entrada por scroll: o padrão é VISÍVEL; a classe `js` arma ────────── */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(6px);
+  transition:
+    opacity 0.9s var(--ease) var(--atraso, 0s),
+    transform 0.9s var(--ease) var(--atraso, 0s),
+    filter 0.9s var(--ease) var(--atraso, 0s);
+}
+.js .reveal.vis {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+.js .entra {
+  animation: entra 1s var(--ease) var(--atraso, 0s) both;
+}
+@keyframes entra {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+    filter: blur(8px);
+  }
+}
+
+/* Animação de peça só roda quando a peça está na tela. */
+.pausa-fora:not(.na-tela) *,
+.pausa-fora:not(.na-tela) {
+  animation-play-state: paused !important;
+}
+
+/* ── fundo nunca chapado: grão + vinheta ───────────────────────────────── */
+.grao {
   position: fixed;
-  inset: 0;
+  inset: -50%;
   z-index: 60;
   pointer-events: none;
-  opacity: 0.028;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grao 0.9s steps(4) infinite;
+}
+@keyframes grao {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-3%, 2%); }
+  50% { transform: translate(2%, -3%); }
+  75% { transform: translate(-2%, -1%); }
+}
+.vinheta {
+  position: fixed;
+  inset: 0;
+  z-index: 59;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgb(0 0 0 / 0.55) 100%);
+}
+
+.pular {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 70;
+  transform: translateY(-160%);
+  @apply rounded-full bg-latao px-5 py-3 font-mono text-rotulo uppercase tracking-eyebrow text-bg;
+  transition: transform 0.25s var(--ease);
+}
+.pular:focus-visible {
+  transform: translateY(0);
 }
 
 .lenis.lenis-smooth {
@@ -190,7 +237,118 @@
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
-  .grain {
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .grao {
     display: none;
   }
+}
+
+/* ── hero: ecos do diário subindo ─────────────────────────────────────── */
+.ecos {
+  animation: ecos 70s linear infinite;
+}
+@keyframes ecos {
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+/* ── títulos que respiram (RODANDO) ───────────────────────────────────── */
+.respira {
+  animation: respira 3.4s ease-in-out infinite;
+}
+@keyframes respira {
+  50% {
+    font-weight: 560;
+    font-stretch: 86%;
+  }
+}
+
+/* ── mini-demos dos sistemas (Minis.tsx). Ciclo de 9s em tudo. ────────── */
+/* --base adianta o relógio meio ciclo: parado (fora da tela, ou antes do JS)
+   o quadro já mostra o produto funcionando, não um palco vazio. */
+:root {
+  --base: -4.5s;
+}
+.mini-slot {
+  opacity: 0;
+  animation: mini-slot 9s var(--ease) calc(var(--base) + var(--d, 0s)) infinite;
+}
+@keyframes mini-slot {
+  0%, 4% { opacity: 0; transform: scale(0.96); }
+  9%, 82% { opacity: 1; transform: none; }
+  90%, 100% { opacity: 0; }
+}
+.mini-toast {
+  opacity: 0;
+  animation: mini-toast 9s var(--ease) var(--base) infinite;
+}
+@keyframes mini-toast {
+  0%, 52% { opacity: 0; transform: translateY(8px); }
+  58%, 84% { opacity: 1; transform: none; }
+  92%, 100% { opacity: 0; }
+}
+
+.mini-msg {
+  opacity: 0;
+  animation: mini-msg 9s var(--ease) calc(var(--base) + var(--d, 0s)) infinite;
+}
+@keyframes mini-msg {
+  0%, 3% { opacity: 0; transform: translateY(10px); filter: blur(4px); }
+  8%, 70% { opacity: 1; transform: none; filter: none; }
+  78%, 100% { opacity: 0; }
+}
+.mini-onda {
+  animation: mini-onda 0.9s ease-in-out var(--d, 0s) infinite alternate;
+}
+@keyframes mini-onda {
+  to { transform: scaleY(0.35); }
+}
+
+.mini-comanda {
+  animation: mini-comanda 9s steps(14) var(--base) infinite;
+}
+@keyframes mini-comanda {
+  0% { transform: translateY(-100%); }
+  45%, 85% { transform: none; }
+  95%, 100% { transform: translateY(-100%); }
+}
+
+.mini-bolinha {
+  animation: mini-bolinha 9s var(--ease) calc(var(--base) - 2.7s) infinite;
+}
+@keyframes mini-bolinha {
+  0% { left: 1.5rem; opacity: 0; }
+  5% { opacity: 1; }
+  30% { left: 50%; }
+  55%, 100% { left: calc(100% - 1.5rem); opacity: 1; }
+}
+.mini-barra {
+  animation: mini-barra 9s var(--ease) calc(var(--base) - 2.7s) infinite;
+}
+@keyframes mini-barra {
+  0%, 55% { transform: scaleX(0); }
+  75%, 92% { transform: scaleX(1); }
+  100% { transform: scaleX(0); }
+}
+.mini-nota,
+.mini-juiz {
+  animation: mini-aparece 9s var(--ease) calc(var(--base) - 2.7s) infinite;
+}
+@keyframes mini-aparece {
+  0%, 70% { opacity: 0; }
+  76%, 92% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* Sem movimento: cada mini fica no quadro final, completo e legível. */
+@media (prefers-reduced-motion: reduce) {
+  .mini-slot, .mini-toast, .mini-msg, .mini-nota, .mini-juiz { animation: none; opacity: 1; }
+  .mini-comanda, .mini-barra { animation: none; transform: none; }
+  .mini-bolinha { animation: none; left: calc(100% - 1.5rem); }
+  .ecos, .respira { animation: none; }
 }
