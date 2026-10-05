@@ -89,7 +89,7 @@ function Celula({ peca, index }: { peca: Peca; index: number }) {
   const base = useId();
 
   return (
-    <Reveal delay={(index % 3) * 0.08} className="h-full">
+    <Reveal delay={(index % 3) * 0.08} className="h-full w-[82vw] max-w-[360px] shrink-0 snap-center sm:w-auto sm:max-w-none">
       <article className="cartao flex h-full flex-col overflow-hidden">
         <div className="relative grid h-56 place-items-center overflow-hidden border-b border-border bg-terminal px-4">
           {peca.render(valores)}
@@ -156,7 +156,7 @@ function Celula({ peca, index }: { peca: Peca; index: number }) {
 
 export function Lab() {
   return (
-    <section id="lab" className="mx-auto max-w-pagina scroll-mt-24 px-5 pt-40 md:px-8">
+    <section id="lab" className="mx-auto max-w-pagina scroll-mt-24 px-5 pt-24 md:px-8 md:pt-40">
       <div className="grid gap-6 md:grid-cols-[auto_1fr] md:items-end md:gap-12">
         <Reveal>
           <p className="eyebrow">{LAB_INTRO.eyebrow}</p>
@@ -169,7 +169,12 @@ export function Lab() {
         </Reveal>
       </div>
 
-      <div className="mt-14 grid items-start gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {/* Celular: trilho de arrastar (seis peças empilhadas eram seis telas no
+          caminho do BORA?). Do sm pra cima, grade. */}
+      <p className="mt-10 font-mono text-[11px] text-dim sm:hidden" aria-hidden>
+        <span className="num text-creme">{String(PECAS.length).padStart(2, "0")}</span> {LAB_INTRO.arrasta}
+      </p>
+      <div className="trilho -mx-5 mt-4 flex snap-x snap-mandatory items-start gap-4 overflow-x-auto px-5 pb-2 sm:mx-0 sm:mt-14 sm:grid sm:grid-cols-2 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
         {PECAS.map((p, i) => (
           <Celula key={p.id} peca={p} index={i} />
         ))}

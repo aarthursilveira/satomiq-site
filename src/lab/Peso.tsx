@@ -102,9 +102,13 @@ export function Peso({
   }, [raio, peso[0], peso[1], largura[0], largura[1], area, fantasma]);
 
   // Repouso (HTML pré-renderizado, sem JS): meio do caminho, legível.
+  // `--impulso` vem de fora (no hero, o recado que a pessoa digita) e soma
+  // no peso de todas as letras.
   const repouso = {
     "--w": String(Math.round((peso[0] + peso[1]) / 2 + 150)),
     "--l": "100%",
+    fontWeight: "clamp(100, calc(var(--w) + var(--impulso, 0)), 1000)",
+    fontStretch: "var(--l)",
   } as CSSProperties;
 
   return (
@@ -115,7 +119,7 @@ export function Peso({
           data-l
           aria-hidden
           className="inline-block"
-          style={{ ...repouso, fontWeight: "var(--w)" as unknown as number, fontStretch: "var(--l)" }}
+          style={repouso}
         >
           {c === " " ? " " : c}
         </span>

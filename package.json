@@ -10,6 +10,9 @@
     "diario": "node scripts/diario.mjs"
   },
   "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@phosphor-icons/react": "^2.1.10",
+    "gsap": "^3.15.0",
     "lenis": "^1.1.13",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

@@ -19,6 +19,16 @@ export default {
         creme: "#D9CFB8", // conector, apoio
         dim: "#8E8371", // apagado · 5,2:1 sobre bg
         ghost: "#3E362C", // ilegível DE PROPÓSITO
+        // superfícies que só existem dentro das ilustrações (celular, comanda, painel)
+        aparelho: "#16110D", // carcaça do celular
+        moldura: "#2F271F", // aro do celular
+        ilha: "#060504", // a ilha da câmera
+        tracejado: "#3A3129", // borda de horário livre, caixa vazia
+        notificacao: "#2A221B", // cartão de notificação na tela de bloqueio
+        papel: "#F4EFE4", // comanda térmica
+        "papel-oliva": "#5F6431", // "PIX ✓" impresso: oliva escurecido pra ler no papel
+        realce: "#2A2216", // cartão escolhido (latão sobre panel, opaco)
+        "realce-leve": "#211B16", // hover do cartão
       },
       fontFamily: {
         // Roboto Flex: a palavra-herói. Largura e peso são o argumento.

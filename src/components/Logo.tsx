@@ -4,6 +4,19 @@
  * curvas. Não vira texto vivo: assim o logotipo não pisca em fonte errada
  * enquanto a Geist carrega, e não depende dela de jeito nenhum.
  */
+/** Só o losango da marca: avatar da Bela e ícone de notificação. */
+export function Marca({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="7 7 34 34" className={className} aria-hidden>
+      <path
+        fillRule="evenodd"
+        d="M25.768 8.768L39.232 22.232A2.5 2.5 0 0 1 39.232 25.768L25.768 39.232A2.5 2.5 0 0 1 22.232 39.232L8.768 25.768A2.5 2.5 0 0 1 8.768 22.232L22.232 8.768A2.5 2.5 0 0 1 25.768 8.768ZM18 19.5L18 28.5A1.5 1.5 0 0 0 19.5 30L28.5 30A1.5 1.5 0 0 0 30 28.5L30 19.5A1.5 1.5 0 0 0 28.5 18L19.5 18A1.5 1.5 0 0 0 18 19.5Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 export function Logo({ className = "h-[26px]" }: { className?: string }) {
   return (
     <svg

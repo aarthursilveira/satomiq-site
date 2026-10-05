@@ -86,7 +86,7 @@ export function Diario() {
   const [quantos, setQuantos] = useState(10);
 
   return (
-    <section id="diario" className="mx-auto max-w-pagina scroll-mt-24 px-5 pt-40 md:px-8">
+    <section id="diario" className="mx-auto max-w-pagina scroll-mt-24 px-5 pt-24 md:px-8 md:pt-40">
       <Reveal>
         <p className="eyebrow">{DIARIO_INTRO.eyebrow}</p>
         <div className="mt-3 flex flex-wrap items-end gap-x-6 gap-y-2">
@@ -166,10 +166,13 @@ export function Diario() {
           </div>
           <ol className="grid gap-0.5 p-4 font-mono text-[12.5px] md:p-5">
             {DIARIO.recentes.slice(0, quantos).map((c, i) => (
-              <li key={i} className="grid grid-cols-[46px_74px_minmax(0,1fr)] gap-3 rounded px-1 py-1 hover:bg-panel">
+              // No celular o repositório entra na frente da mensagem: com três
+              // colunas, sobravam 150px pra ela e cada commit virava quatro linhas.
+              <li key={i} className="grid grid-cols-[46px_minmax(0,1fr)] gap-3 rounded px-1 py-1 hover:bg-panel sm:grid-cols-[46px_74px_minmax(0,1fr)]">
                 <span className="text-dim num">{curta(c.data)}</span>
-                <span className="truncate text-azul">{c.repo}</span>
+                <span className="hidden truncate text-azul sm:block">{c.repo}</span>
                 <span className="min-w-0 break-words">
+                  <span className="text-azul sm:hidden">{c.repo} </span>
                   <Mensagem msg={c.msg} />
                 </span>
               </li>

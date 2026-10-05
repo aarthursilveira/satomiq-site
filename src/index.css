@@ -28,6 +28,14 @@
   font-display: swap;
 }
 
+/* Registrada pra poder ter transição: o peso que o recado soma no título
+   chega devagar, não aos trancos a cada tecla. */
+@property --impulso {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -89,6 +97,17 @@
   }
   .num {
     font-variant-numeric: tabular-nums;
+  }
+  .impulso {
+    transition: --impulso 0.8s var(--ease);
+  }
+  /* Trilho horizontal (lab no celular): rola com o dedo, sem barra. */
+  .trilho {
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .trilho::-webkit-scrollbar {
+    display: none;
   }
   .eyebrow {
     @apply font-mono text-rotulo uppercase tracking-eyebrow text-dim;
@@ -179,6 +198,22 @@
     opacity: 0;
     transform: translateY(28px);
     filter: blur(8px);
+  }
+}
+@keyframes entra-leve {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+/* Celular (o navegador do Instagram, num Android de entrada): blur animado em
+   bloco de 700px é o que mais pesa na entrada. Fica só o deslize. */
+@media (hover: none) {
+  .js .reveal {
+    filter: none;
+  }
+  .js .entra {
+    animation-name: entra-leve;
   }
 }
 
@@ -343,6 +378,111 @@
   0%, 70% { opacity: 0; }
   76%, 92% { opacity: 1; }
   100% { opacity: 0; }
+}
+
+/* ── faixa (range) da conta: trilho fino, polegar de latão ─────────────── */
+.faixa {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 28px;
+  background: transparent;
+  cursor: pointer;
+}
+.faixa::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--border);
+}
+.faixa::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--border);
+}
+.faixa::-moz-range-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--latao);
+}
+.faixa::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  margin-top: -10px;
+  height: 24px;
+  width: 24px;
+  border-radius: 999px;
+  background: var(--latao);
+  box-shadow: 0 0 0 4px rgb(11 9 7 / 0.9);
+  transition: transform 0.12s var(--ease);
+}
+.faixa::-moz-range-thumb {
+  height: 24px;
+  width: 24px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--latao);
+  box-shadow: 0 0 0 4px rgb(11 9 7 / 0.9);
+}
+.faixa:active::-webkit-slider-thumb {
+  transform: scale(1.12);
+}
+.faixa:focus-visible {
+  outline: none;
+}
+.faixa:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgb(11 9 7 / 0.9), 0 0 0 6px var(--latao);
+}
+.faixa:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 4px rgb(11 9 7 / 0.9), 0 0 0 6px var(--latao);
+}
+
+/* ── demo: os três pontinhos de "digitando" ─────────────────────────────── */
+.digitando i {
+  display: block;
+  height: 6px;
+  width: 6px;
+  border-radius: 999px;
+  background: var(--creme);
+  opacity: 0.35;
+  animation: digita 1.1s ease-in-out infinite;
+}
+.digitando i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+.digitando i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+@keyframes digita {
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+/* ── painel da demo: o que acabou de mudar acende e apaga ──────────────── */
+.acende {
+  animation: acende 1.4s var(--ease) both;
+}
+@keyframes acende {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+    box-shadow: 0 0 0 1px var(--latao), 0 0 32px -4px rgb(167 141 81 / 0.7);
+  }
+  25% {
+    opacity: 1;
+    transform: none;
+  }
+}
+.acende-texto {
+  animation: acende-texto 1.2s var(--ease) both;
+}
+@keyframes acende-texto {
+  from {
+    color: var(--latao);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
 }
 
 /* Sem movimento: cada mini fica no quadro final, completo e legível. */

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import type { CSSProperties } from "react";
 
 /*
@@ -17,12 +18,26 @@ const HORARIOS = [
   ["15:00", "Barba", "Diego"],
 ];
 
+const SEMANA = ["dom", "seg", "ter", "qua", "qui", "sex", "sáb"];
+const MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"];
+
+/** A agenda é sempre a de hoje. O HTML pré-renderizado sai com uma data fixa. */
+function useHoje() {
+  const [hoje, setHoje] = useState("qui · 02 out");
+  useEffect(() => {
+    const d = new Date();
+    setHoje(`${SEMANA[d.getDay()]} · ${String(d.getDate()).padStart(2, "0")} ${MESES[d.getMonth()]}`);
+  }, []);
+  return hoje;
+}
+
 export function MiniMaarkio() {
+  const hoje = useHoje();
   return (
     <div className="w-full max-w-[340px] font-mono text-[11.5px]">
       <div className="mb-3 flex items-center justify-between text-dim">
-        <span>qui · 02 out</span>
-        <span className="text-latao">agenda</span>
+        <span>{hoje}</span>
+        <span className="text-latao">agenda de hoje</span>
       </div>
       <ul className="grid gap-1.5">
         {HORARIOS.map(([h, s, n], i) => (
@@ -68,10 +83,14 @@ export function MiniNectarq() {
         className="mini-msg max-w-[82%] justify-self-end rounded-2xl rounded-br-sm bg-latao/15 px-3 py-2.5 text-creme ring-1 ring-inset ring-latao/40"
         style={d(1.8)}
       >
-        Tenho sim! Sábado 9h ou 10h30, qual fica melhor pra ti?
+        Tem sim! Sábado cedo ainda tem horário. Escolhe aqui:
+        <span className="mt-1.5 block rounded-lg bg-bg/50 px-2.5 py-1.5 font-mono text-[10.5px] text-azul ring-1 ring-inset ring-border">
+          teusalao.com.br/agenda ↗
+        </span>
       </div>
+      {/* Quem marca é o cliente, no link (Maarkio). A Bela cuida da conversa. */}
       <div className="mini-msg justify-self-end" style={d(2.9)}>
-        <span className="chip text-azul ring-azul/40">→ passou pra equipe · resumo pronto</span>
+        <span className="chip text-oliva ring-oliva/40">✓ marcou sábado 9h pelo link</span>
       </div>
     </div>
   );

@@ -48,6 +48,10 @@ function Cartao({ s, index }: { s: Sistema; index: number }) {
             <p className="font-mono text-[11px] uppercase tracking-eyebrow text-dim">decisão que importa</p>
             <p className="mt-2 font-mono text-miudo text-texto">{s.decisao.texto}</p>
             <p className="mt-1.5 font-mono text-[11px] text-latao">{s.decisao.fonte}</p>
+            {/* O commit fala com dev; a tradução fala com quem vai usar. */}
+            <p className="mt-3 border-t border-border pt-3 font-gente text-miudo text-creme">
+              <span className="font-serif text-[1.05rem] italic text-latao">traduzindo:</span> {s.decisao.traducao}
+            </p>
           </div>
 
           <div className="mt-auto flex flex-wrap items-center gap-1.5 pt-1">
@@ -76,7 +80,7 @@ function Cartao({ s, index }: { s: Sistema; index: number }) {
 
 export function Rodando() {
   return (
-    <section id="rodando" className="mx-auto max-w-pagina scroll-mt-24 px-5 pt-32 md:px-8">
+    <section id="rodando" className="mx-auto max-w-pagina scroll-mt-24 px-5 pt-24 md:px-8 md:pt-32">
       <div className="grid gap-6 md:grid-cols-[auto_1fr] md:items-end md:gap-12">
         <Reveal>
           <p className="eyebrow flex items-center gap-2.5">

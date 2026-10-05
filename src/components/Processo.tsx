@@ -4,7 +4,7 @@ import { Reveal } from "./ui/Reveal";
 export function Processo() {
   const { conversa } = PROCESSO;
   return (
-    <section id="processo" className="mx-auto max-w-pagina scroll-mt-24 px-5 pt-40 md:px-8">
+    <section id="processo" className="mx-auto max-w-pagina scroll-mt-24 px-5 pt-24 md:px-8 md:pt-40">
       <Reveal>
         <p className="eyebrow">{PROCESSO.eyebrow}</p>
         {/* con/versa: metade gente (serif), metade máquina (mono). */}
