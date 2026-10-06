@@ -2,30 +2,41 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
-    <title>Arthur Silveira · SAtomiq — sistema sob medida pro teu negócio</title>
+    <title>Arthur Silveira · SAtomiq: cê me conta o problema, eu construo</title>
     <meta
       name="description"
-      content="Agenda que se enche sozinha, WhatsApp respondido na hora, pedido e cobrança sem planilha. Sistemas sob medida pra salão, clínica e delivery, feitos e cuidados pelo Arthur Silveira."
+      content="Agenda que o cliente marca sozinho (Maarkio), atendimento no WhatsApp que responde na hora (Bela) e landing page sob demanda. Feitos e cuidados pelo Arthur Silveira."
     />
     <link rel="canonical" href="https://satomiq.com/" />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <!-- iOS ignora SVG aqui: sem PNG, "adicionar à tela de início" vira print da página. -->
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <meta name="theme-color" content="#0B0907" />
+    <meta name="theme-color" content="#2E2118" />
 
-    <!-- Arma a animação de entrada ANTES da pintura. Sem esta linha a página
-         fica visível e estática (o padrão de propósito: quem chega sem JS lê
-         tudo). Tem que ser inline: um arquivo externo chegaria tarde. -->
+    <!-- Antes da primeira pintura, de propósito inline:
+         1. o tema salvo (a mesma chave do botão de sol e lua), senão quem
+            escolheu o escuro vê o claro piscar;
+         2. a classe "js", que arma a entrada animada do topo. Sem JS a página
+            fica inteira e parada, nunca invisível. Se o movimento não chegar
+            em 2,5s (rede ruim no navegador do Instagram), "solta" mostra tudo. -->
     <script>
-      document.documentElement.classList.add("js");
+      (function () {
+        var r = document.documentElement;
+        try {
+          var t = localStorage.getItem("satomiq-tema");
+          if (t === "light" || t === "dark") r.dataset.theme = t;
+        } catch (e) {}
+        r.classList.add("js");
+        setTimeout(function () { r.classList.add("solta"); }, 2500);
+      })();
     </script>
 
     <!-- As duas que aparecem na primeira dobra. -->
-    <link rel="preload" href="/fonts/RobotoFlex-wght-wdth.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Recursive-wght-MONO.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fontes/archivo-wdth.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fontes/geist.woff2" as="font" type="font/woff2" crossorigin />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://satomiq.com/" />
@@ -33,15 +44,15 @@
     <meta property="og:title" content="Arthur Silveira · SAtomiq" />
     <meta
       property="og:description"
-      content="Cê me conta o problema, eu construo e deixo rodando. Sistemas sob medida pra salão, clínica e delivery."
+      content="Cê me conta o problema, eu construo e deixo rodando. Agenda por link, atendimento no WhatsApp e landing page."
     />
     <!-- O card do link no WhatsApp: abaixo de 300 KB ou o WhatsApp não mostra
-         imagem nenhuma. JPEG porque o PNG da mesma arte dava 289 KB. -->
+         imagem nenhuma. JPEG pelo mesmo motivo. -->
     <meta property="og:image" content="https://satomiq.com/og.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="cê me conta o problema… eu CONSTRUO …e deixo rodando. Arthur Silveira, satomiq.com" />
+    <meta property="og:image:alt" content="Cê me conta. Eu construo. Arthur Silveira, satomiq.com" />
     <meta property="og:locale" content="pt_BR" />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -54,10 +65,10 @@
             "@id": "https://satomiq.com/#arthur",
             "name": "Arthur Silveira",
             "jobTitle": "Desenvolvedor de sistemas com IA",
-            "description": "Constrói e opera sistemas com IA em produção: agendamento (Maarkio), atendimento no WhatsApp (Nectarq), delivery multi-tenant (Gluten) e prospecção B2B com agentes (Outreach).",
+            "description": "Constrói e cuida de sistemas com IA para negócio de verdade: agendamento por link (Maarkio), atendimento no WhatsApp (Bela, sistema Nectarq) e landing pages sob demanda.",
             "url": "https://satomiq.com/",
             "worksFor": { "@id": "https://satomiq.com/#organizacao" },
-            "knowsAbout": ["Inteligência artificial aplicada", "Agentes de IA", "Automação de processos", "TypeScript", "React", "Next.js", "Fastify", "Python", "Claude Code"],
+            "knowsAbout": ["Inteligência artificial aplicada", "Atendimento no WhatsApp", "Agendamento online", "Landing pages", "TypeScript", "React"],
             "sameAs": ["https://instagram.com/arthursilveira.ai", "https://github.com/aarthursilveira"]
           },
           {
@@ -68,7 +79,7 @@
             "logo": "https://satomiq.com/icone-app.svg",
             "founder": { "@id": "https://satomiq.com/#arthur" },
             "brand": [
-              { "@type": "Brand", "name": "Maarkio" },
+              { "@type": "Brand", "name": "Maarkio", "url": "https://maarkio.com/" },
               { "@type": "Brand", "name": "Nectarq" }
             ]
           },
